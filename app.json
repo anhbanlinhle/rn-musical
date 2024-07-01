@@ -2,6 +2,7 @@
   "expo": {
     "name": "rn-music",
     "slug": "rn-music",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "entryPoint": "./app/_layout.js"
   }
 }
