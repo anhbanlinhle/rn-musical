@@ -5,10 +5,10 @@ import Icons from '../constants/Icons'
 import {NavigationContainer} from '@react-navigation/native'
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
 
-import Onboard from "./Onboard"
-import Home from "./Home"
-import Playlist from "./Playlist"
-import Song from "./Song"
+import Onboard from "./onboard/Onboard"
+import Home from "./home/Home"
+import Playlist from "./playlist/Playlist"
+import Song from "./song/Song"
 
 const Stack = createNativeStackNavigator()
 

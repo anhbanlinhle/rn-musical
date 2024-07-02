@@ -1,11 +1,11 @@
 import React from 'react'
 import {View, StyleSheet, Button, Text, ScrollView, Image, SafeAreaView} from 'react-native'
 
-import {ratioH} from "../utils/converter"
-import {ratioW} from "../utils/converter"
+import {ratioH} from "../../utils/converter"
+import {ratioW} from "../../utils/converter"
 
-import Fonts from "../constants/Fonts"
-import Icons from "../constants/Icons";
+import Fonts from "../../constants/Fonts"
+import Icons from "../../constants/Icons";
 
 const Home = ({navigation}) => {
     const Header = () => {
@@ -13,7 +13,7 @@ const Home = ({navigation}) => {
             <View style={styles.homeHeader}>
                 <Image
                     style={styles.avatar}
-                    source={require('../assets/images/Avatar.png')}
+                    source={require('../../assets/images/Avatar.png')}
                 />
                 <Text style={styles.greeting}>Hi,{" "}
                     <Text style={styles.name}>User</Text>
