@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from "react-native"
-
+import Icons from "../constants/Icons"
 
 export default function Index() {
     return (
@@ -7,6 +7,7 @@ export default function Index() {
             style={styles.container}
         >
             <Text>Index</Text>
+            <Icons.Heart width={120} height={40} />
         </View>
     )
 }
