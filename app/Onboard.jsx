@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
         gap: 24
     },
     background: {
-        width: ratioH(376),
+        width: ratioW(376),
         height: ratioW(721),
         position: 'absolute',
         left: 0,
@@ -91,25 +91,25 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
     },
     foreground: {
-        width: ratioW(304),
+        width: ratioH(304),
         height: ratioH(438),
         justifyContent: 'center',
         alignItems: 'center',
     },
     logo: {
-        width: ratioW(314),
+        width: ratioH(314),
         height: ratioH(342),
     },
     banner: {
         marginTop: ratioH(44),
-        width: ratioW(304),
+        width: ratioH(304),
         height: ratioH(154),
         alignItems: 'left',
         justifyContent: 'top',
         gap: 8
     },
     bannerLogo: {
-        width: ratioW(32),
+        width: ratioH(32),
         height: ratioH(32),
     },
     bannerAppName: {
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     },
     appName: {
         ...Fonts.semiBold,
-        fontSize: ratioW(20),
+        fontSize: ratioH(20),
         color: '#B9C8FF'
     },
     bannerWelcome: {
@@ -128,11 +128,11 @@ const styles = StyleSheet.create({
     },
     bannerWelcomeText: {
         ...Fonts.semiBold,
-        fontSize: ratioW(32),
+        fontSize: ratioH(32),
         color: '#191D21'
     },
     nextPageNavigation: {
-        width: ratioW(304),
+        width: ratioH(304),
         height: ratioH(80),
         gap: 8,
         alignItems: 'center',
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
         borderRadius: ratioW(64),
     },
     homeButtonImage: {
-        width: ratioW(64),
+        width: ratioH(64),
         height: ratioH(64),
         resizeMode: 'contain',
         zIndex: 9999
