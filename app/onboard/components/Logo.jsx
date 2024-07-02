@@ -1,13 +1,14 @@
 import React from 'react'
 import {View, StyleSheet, Image} from 'react-native'
-import {ratioH} from "../../../utils/converter";
+import {ratioH} from "../../../utils/converter"
+import Images from "../../../constants/Images"
 
 const Logo = () => {
     return (
         <View style={styles.foreground}>
             <Image
                 style={styles.logo}
-                source={require('../../../assets/images/Onboard-2.png')}
+                source={Images.Onboard2}
             />
         </View>
     )

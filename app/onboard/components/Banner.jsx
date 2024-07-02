@@ -1,13 +1,15 @@
 import React from 'react'
 import {View, StyleSheet, Image, Text} from 'react-native'
-import {ratioH} from "../../../utils/converter";
-import Fonts from "../../../constants/Fonts";
+import {ratioH} from "../../../utils/converter"
+import Fonts from "../../../constants/Fonts"
+
+import Images from "../../../constants/Images"
 
 const Banner = () => {
     return (
         <View style={styles.banner}>
             <View style={styles.bannerAppName}>
-                <Image style={styles.bannerLogo} source={require('../../../assets/images/AppLogo.png')}/>
+                <Image style={styles.bannerLogo} source={Images.AppLogo}/>
                 <Text style={styles.appName}>Musical</Text>
             </View>
             <View style={styles.bannerWelcome}>

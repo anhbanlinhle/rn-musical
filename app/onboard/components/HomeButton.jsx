@@ -1,6 +1,7 @@
 import React from 'react'
 import {View, StyleSheet, TouchableHighlight, Image} from 'react-native'
-import {ratioH, ratioW} from "../../../utils/converter";
+import {ratioH, ratioW} from "../../../utils/converter"
+import Images from "../../../constants/Images"
 
 const HomeButton = ({navigation}) => {
     return (
@@ -12,7 +13,7 @@ const HomeButton = ({navigation}) => {
                 onPress={() => navigation.navigate('Home')}
             >
                 <Image
-                    source={require('../../../assets/images/NextPage.png')}
+                    source={Images.NextPage}
                     style={styles.homeButtonImage}
                 />
             </TouchableHighlight>

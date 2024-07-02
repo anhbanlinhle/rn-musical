@@ -2,10 +2,12 @@ import React from 'react'
 import {View, StyleSheet, ImageBackground} from 'react-native'
 import {ratioW} from "../../../utils/converter"
 
+import Images from "../../../constants/Images"
+
 const Background = () => {
     return (
         <ImageBackground
-            source={require('../../../assets/images/Onboard-1.png')}
+            source={Images.Onboard1}
             style={styles.background}
         />
     )
