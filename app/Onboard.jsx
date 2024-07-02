@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, StyleSheet, Button, Text, ImageBackground, SafeAreaView, Image} from 'react-native'
+import {View, StyleSheet, Button, Text, ImageBackground, SafeAreaView, Image, TouchableHighlight} from 'react-native'
 
 import {ratioH} from "../utils/converter"
 import {ratioW} from "../utils/converter"
@@ -47,11 +47,16 @@ const Onboard = ({navigation}) => {
             <View
                 style={styles.nextPageNavigation}
             >
-                <Image
-                    source={require('../assets/images/NextPage.png')}
+                <TouchableHighlight
                     style={styles.homeButton}
                     onPress={() => navigation.navigate('Home')}
-                />
+                >
+                    <Image
+                        source={require('../assets/images/NextPage.png')}
+                        style={styles.homeButtonImage}
+                    />
+                </TouchableHighlight>
+
             </View>
 
         )
@@ -135,9 +140,13 @@ const styles = StyleSheet.create({
         padding: [8, 16, 8, 16]
     },
     homeButton: {
+        borderRadius: ratioW(64),
+    },
+    homeButtonImage: {
         width: ratioW(64),
         height: ratioH(64),
         resizeMode: 'contain',
+        zIndex: 9999
     }
 })
 
