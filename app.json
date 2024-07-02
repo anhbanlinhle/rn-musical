@@ -1,14 +1,4 @@
 {
-  "expo": {
-    "name": "rn-music",
-    "slug": "rn-music",
-    "version": "1.0.0",
-    "scheme": "com.ebi.musical",
-    "icon": "./assets/image/Onboard-2.png",
-    "splash": {
-      "image": "./assets/image/Onboard-2.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    }
-  }
+  "name": "rnmusical",
+  "displayName": "rnmusical"
 }
