@@ -1,3 +1,4 @@
+import NextPage from '../assets/icons/NextPage.svg'
 import Note from '../assets/icons/Note.svg'
 import Mic from '../assets/icons/Mic.svg'
 import Menu from '../assets/icons/Menu.svg'
@@ -14,6 +15,7 @@ import Playlist from '../assets/icons/Playlist.svg'
 import Shuffle from '../assets/icons/Shuffle.svg'
 
 const Icons = {
+    NextPage,
     Note,
     Mic,
     Menu,
