@@ -13,7 +13,7 @@ import HeartFilled from '../assets/icons/HeartFilled.svg'
 import Playlist from '../assets/icons/Playlist.svg'
 import Shuffle from '../assets/icons/Shuffle.svg'
 
-export default {
+const Icons = {
     Note,
     Mic,
     Menu,
@@ -29,3 +29,5 @@ export default {
     Playlist,
     Shuffle,
 }
+
+export default Icons

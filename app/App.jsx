@@ -1,19 +1,12 @@
 import React from 'react'
 import {View, StyleSheet, Text} from 'react-native'
 import Fonts from '../constants/Fonts'
+import Icons from '../constants/Icons'
 
 const App = () => {
     return (
         <View style={styles.container}>
-            <Text style={{ ...Fonts.regular}}>
-                Poppins Regular
-            </Text>
-            <Text style={{ ...Fonts.bold}}>
-                Poppins Bold
-            </Text>
-            <Text style={{ ...Fonts.italic}}>
-                Poppins Italic
-            </Text>
+            <Icons.Heart />
         </View>
     )
 }
