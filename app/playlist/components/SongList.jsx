@@ -17,6 +17,7 @@ const SongList = () => {
                             img={item.img}
                             song={item.song}
                             artist={item.artist}
+                            link={item.link}
                         />
                     )
                 }

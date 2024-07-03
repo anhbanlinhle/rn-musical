@@ -3,19 +3,24 @@ import {View, StyleSheet, TouchableOpacity, Image, Text} from 'react-native'
 import {ratioH, ratioW} from "../../../utils/converter"
 
 import { useNavigation } from '@react-navigation/native'
-import Song from "../../song/Song";
 import Fonts from "../../../constants/Fonts"
 import Icons from "../../../constants/Icons"
 
-const SongItem = ({img, song, artist}) => {
+const SongItem = ({img, song, artist, link}) => {
     const navigation = useNavigation()
 
     return (
         <TouchableOpacity
             style={styles().container}
-            onPress={() => navigation.navigate(Song)}
+            onPress={() => {
+                navigation.navigate('Song', {
+                        img: {img},
+                        song: {song},
+                        artist: {artist},
+                        link: {link}
+                    })
+            }}
         >
-
             <Image style={styles().cover} source={{uri: img}}/>
             <View style={styles().textWrapper}>
                 <Text style={styles().songName}>{song}</Text>
