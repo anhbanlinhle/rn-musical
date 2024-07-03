@@ -1,15 +1,15 @@
 import React from 'react'
-import {View, StyleSheet, Button} from 'react-native'
+import {View, StyleSheet, Button, ScrollView} from 'react-native'
+import Banner from "./components/Banner"
+import SongList from "./components/SongList"
 
 const Playlist = ({navigation}) => {
     return (
         <View style={styles.container}>
-            <Button
-                title="Go to Song"
-                onPress={() =>
-                    navigation.navigate('Song')
-                }
-            />
+            <ScrollView bounces={false}>
+                <Banner/>
+                <SongList/>
+            </ScrollView>
         </View>
     )
 }
@@ -17,7 +17,7 @@ const Playlist = ({navigation}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: '#FFFFFF',
         alignItems: 'center',
         justifyContent: 'center',
     },
