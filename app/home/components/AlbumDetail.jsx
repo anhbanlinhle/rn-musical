@@ -1,11 +1,19 @@
 import React from 'react'
 import {View, StyleSheet, TouchableOpacity, Image, Text} from 'react-native'
-import {ratioW, ratioH} from "../../../utils/converter";
-import Fonts from "../../../constants/Fonts";
+import {ratioW, ratioH} from "../../../utils/converter"
+import Fonts from "../../../constants/Fonts"
+
+import { useNavigation } from '@react-navigation/native'
+import Playlist from "../../playlist/Playlist"
 
 const AlbumDetail = ({size, img, description, title}) => {
+    const navigation = useNavigation()
+
     return (
-        <TouchableOpacity style={styles({size}).container}>
+        <TouchableOpacity
+            style={styles({size}).container}
+            onPress={() => navigation.navigate(Playlist)}
+        >
                 <Image style={styles({size}).cover} source={{uri: img}}/>
                 <View style={styles({size}).textWrapper}>
                     <Text style={styles({size}).description}>{description}</Text>
