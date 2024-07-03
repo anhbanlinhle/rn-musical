@@ -4,7 +4,9 @@ import Fonts from "../../../constants/Fonts"
 import {ratioW, ratioH} from "../../../utils/converter"
 import AlbumDetail from "./AlbumDetail"
 
-import AlbumData from '../../../data/albums.json'
+import AlbumData1 from '../../../data/albums-1.json'
+import AlbumData2 from '../../../data/albums-2.json'
+
 
 const FeedArea = () => {
     const renderPopularSection = () => {
@@ -12,7 +14,7 @@ const FeedArea = () => {
             <View style={styles.popularSection}>
                 <Text style={styles.title}>Popular</Text>
                 <FlatList
-                    data={AlbumData}
+                    data={AlbumData1}
                     style={styles.albumDetail}
                     horizontal={true}
                     renderItem={
@@ -35,7 +37,7 @@ const FeedArea = () => {
             <View style={styles.topAlbumSection}>
                 <Text style={styles.title}>Top Albums</Text>
                 <FlatList
-                    data={AlbumData}
+                    data={AlbumData2}
                     style={styles.albumDetail}
                     horizontal={true}
                     renderItem={
