@@ -2,8 +2,11 @@ import React from 'react'
 import {View, StyleSheet, TouchableHighlight, Image} from 'react-native'
 import {ratioH, ratioW} from "../../../utils/converter"
 import Images from "../../../constants/Images"
+import {useNavigation} from "@react-navigation/native";
 
-const HomeButton = ({navigation}) => {
+const HomeButton = () => {
+    const navigation = useNavigation()
+
     return (
         <View
             style={styles.nextPageNavigation}

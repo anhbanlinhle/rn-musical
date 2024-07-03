@@ -3,7 +3,7 @@ import {View, StyleSheet, Button, ScrollView} from 'react-native'
 import Banner from "./components/Banner"
 import SongList from "./components/SongList"
 
-const Playlist = ({navigation}) => {
+const Playlist = () => {
     return (
         <View style={styles.container}>
             <ScrollView bounces={false}>

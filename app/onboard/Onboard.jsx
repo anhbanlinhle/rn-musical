@@ -6,13 +6,13 @@ import Banner from "./components/Banner"
 import Logo from "./components/Logo"
 import HomeButton from "./components/HomeButton"
 
-const Onboard = ({navigation}) => {
+const Onboard = () => {
     return (
         <SafeAreaView style={styles.container}>
             <Background/>
             <Banner/>
             <Logo/>
-            <HomeButton navigation={navigation}/>
+            <HomeButton/>
         </SafeAreaView>
     )
 }

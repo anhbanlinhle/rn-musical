@@ -12,7 +12,7 @@ const AlbumDetail = ({size, img, description, title}) => {
     return (
         <TouchableOpacity
             style={styles({size}).container}
-            onPress={() => navigation.navigate(Playlist)}
+            onPress={() => navigation.navigate('Playlist')}
         >
                 <Image style={styles({size}).cover} source={{uri: img}}/>
                 <View style={styles({size}).textWrapper}>

@@ -5,7 +5,7 @@ import SearchArea from "./components/SearchArea"
 import FeedArea from "./components/FeedArea"
 import {ratioH, ratioW} from "../../utils/converter"
 
-const Home = ({navigation}) => {
+const Home = () => {
     return (
         <SafeAreaView style={styles.wrapper}>
             <View style={styles.container}>
