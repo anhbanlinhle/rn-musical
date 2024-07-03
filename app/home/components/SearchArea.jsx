@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         width: ratioW(327),
         height: ratioW(46),
-        gap: 4,
         backgroundColor: '#E8EEF3',
         borderRadius: ratioW(10),
     },
@@ -31,6 +30,7 @@ const styles = StyleSheet.create({
         ...Fonts.regular,
         fontSize: ratioW(16),
         marginVertical: ratioW(11),
+        color: '#000000'
     },
 })
 

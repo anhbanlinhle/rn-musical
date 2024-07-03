@@ -45,11 +45,14 @@ const styles = StyleSheet.create({
     },
     greeting: {
         ...Fonts.regular,
-        fontSize: ratioW(32),
+        fontSize: ratioH(32),
+        color: '#191D21'
     },
     name: {
         ...Fonts.semiBold,
         fontSize: ratioH(32),
+        color: '#191D21'
+
     },
     dropDown: {
         width: ratioW(32),

@@ -21,8 +21,6 @@ const styles = StyleSheet.create({
     wrapper: {
         flex: 1,
         backgroundColor: '#FFFFFF',
-        alignItems: 'center',
-        justifyContent: 'center',
     },
     container: {
         flex: 1,
@@ -30,8 +28,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: ratioH(121),
-        padding: [ratioW(0), ratioW(24), ratioW(0), ratioW(24)],
-        gap: ratioW(32)
+        gap: ratioW(16)
     }
 })
 
