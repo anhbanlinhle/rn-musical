@@ -1,34 +1,47 @@
 import React from 'react'
 import {View, StyleSheet, Image, Text} from 'react-native'
-import Icons from "../../../constants/Icons";
-import {ratioH, ratioW} from "../../../utils/converter";
-import Fonts from "../../../constants/Fonts";
+import Icons from "../../../constants/Icons"
+import {ratioH, ratioW} from "../../../utils/converter"
+import Fonts from "../../../constants/Fonts"
+import Images from "../../../constants/Images"
+
+let User = {
+    name: "Linh",
+    avatar: Images.Avatar
+}
 
 const HomeHeader = () => {
     return (
-        <View style={styles.homeHeader}>
+        <View style={styles.container}>
             <Image
                 style={styles.avatar}
-                source={require('../../assets/images/Avatar.png')}
+                source={User.avatar}
             />
-            <Text style={styles.greeting}>Hi,{" "}
-                <Text style={styles.name}>User</Text>
-            </Text>
-            <Icons.Menu/>
+            <View style={styles.message}>
+                <Text style={styles.greeting}>Hi,{" "}
+                    <Text style={styles.name}>{User.name}</Text>
+                </Text>
+            </View>
+            <Icons.Menu style={styles.dropDown}/>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    homeHeader: {
+    container: {
         flexDirection: 'row',
         width: ratioW(327),
-        height: ratioH(41),
+        height: ratioW(41),
         gap: 4
     },
     avatar: {
         width: ratioW(32),
-        height: ratioH(32),
+        height: ratioW(32),
+    },
+    message: {
+        width: ratioW(231),
+        height: ratioW(41),
+        paddingHorizontal: ratioH(16),
     },
     greeting: {
         ...Fonts.regular,
@@ -36,8 +49,12 @@ const styles = StyleSheet.create({
     },
     name: {
         ...Fonts.semiBold,
-        fontSize: ratioW(32),
+        fontSize: ratioH(32),
     },
+    dropDown: {
+        width: ratioW(32),
+        height: ratioW(32),
+    }
 })
 
 export default HomeHeader
