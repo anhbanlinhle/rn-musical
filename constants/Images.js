@@ -4,6 +4,9 @@ const Images = {
     NextPage: require('../assets/images/NextPage.png'),
     Onboard1: require('../assets/images/Onboard-1.png'),
     Onboard2: require('../assets/images/Onboard-2.png'),
+    GenreCover1: require('../assets/images/GenreCover1.png'),
+    GenreCover2: require('../assets/images/GenreCover2.png'),
+    GenreCover3: require('../assets/images/GenreCover3.png'),
 }
 
 export default Images
