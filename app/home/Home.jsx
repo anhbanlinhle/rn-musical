@@ -20,11 +20,11 @@ const Home = ({navigation}) => {
 const styles = StyleSheet.create({
     wrapper: {
         flex: 1,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#F9F6EE',
     },
     container: {
         flex: 1,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#F9F6EE',
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: ratioH(121),

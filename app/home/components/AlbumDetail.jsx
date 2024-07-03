@@ -18,7 +18,7 @@ const AlbumDetail = ({size, img, description, title}) => {
 const styles = (props) => StyleSheet.create({
     container: {
         flexDirection: 'column',
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#FFFFF0',
         borderRadius: 16,
         width: ratioH(props.size) * 254,
         height: ratioH(props.size) * 283,
@@ -30,13 +30,16 @@ const styles = (props) => StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 2.5,
         elevation: 3,
-        marginRight: 16
+        marginRight: 16,
+        marginLeft: 2,
+        marginTop: 2
     },
     cover: {
         width: ratioH(props.size * 254),
         height: ratioH(props.size * 200),
         borderTopLeftRadius: 16,
         borderTopRightRadius: 16,
+        resizeMode: 'stretch',
     },
     textWrapper: {
         padding: ratioH(props.size * 16),

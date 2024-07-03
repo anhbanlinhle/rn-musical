@@ -65,7 +65,7 @@ const FeedArea = () => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#F9F6EE',
         flexDirection: 'row',
         marginLeft: ratioW(24),
     },
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     popularSection: {
     },
     topAlbumSection: {
-        marginBottom: ratioH(16),
+        marginVertical: ratioH(16),
     },
     albumDetail: {
         height: ratioH(283 + 16),
