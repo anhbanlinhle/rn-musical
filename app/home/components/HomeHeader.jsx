@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     message: {
         width: ratioW(231),
         height: ratioW(41),
-        paddingHorizontal: ratioH(16),
+        marginHorizontal: ratioH(16),
     },
     greeting: {
         ...Fonts.regular,
