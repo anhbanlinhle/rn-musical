@@ -2,31 +2,37 @@
   {
     "img": "https://upload.wikimedia.org/wikipedia/vi/2/2b/Imagine_Dragons_-_%22Demons%22_%28Official_Single_Cover%29.jpg",
     "description": "Imagine Dragons",
-    "title": "Demons"
+    "title": "Demons",
+    "type": 1
   },
   {
     "img": "https://upload.wikimedia.org/wikipedia/en/7/78/FallOutBoy-Centuries.png",
     "description": "Fall Out Boy",
-    "title": "Centuries"
+    "title": "Centuries",
+    "type": 2
   },
   {
     "img": "https://upload.wikimedia.org/wikipedia/en/7/77/Maroon_5_-_Overexposed.png",
     "description": "Maroon 5",
-    "title": "Overexposed"
+    "title": "Overexposed",
+    "type": 3
   },
   {
     "img": "https://upload.wikimedia.org/wikipedia/en/9/91/Imagine_Dragons_-_%22Radioactive%22_%28Single%29.jpg",
     "description": "Imagine Dragons",
-    "title": "Radioactive"
+    "title": "Radioactive",
+    "type": 1
   },
   {
     "img": "https://upload.wikimedia.org/wikipedia/en/2/2d/Fall_Out_Boy_-_%22My_Songs_Know_What_You_Did_in_the_Dark_%28Light_Em_Up%29%22.jpg",
     "description": "Fall Out Boy",
-    "title": "Light Em' Up"
+    "title": "Light Em' Up",
+    "type": 2
   },
   {
     "img": "https://upload.wikimedia.org/wikipedia/en/5/53/Maroon_5_-_V_%28Official_Album_Cover%29.png?20140725195152",
     "description": "Maroon 5",
-    "title": "V"
+    "title": "V",
+    "type": 3
   }
 ]

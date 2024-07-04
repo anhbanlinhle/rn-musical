@@ -2,32 +2,38 @@
   {
     "img": "https://i.scdn.co/image/ab67616d0000b2732737be35cc5245eef495be90",
     "description": "Adele",
-    "title": "Skyfall"
+    "title": "Skyfall",
+    "type": 1
   },
   {
     "img": "https://upload.wikimedia.org/wikipedia/vi/0/07/Coldplay_Ghost_Stories.png",
     "description": "Coldplay",
-    "title": "Ghost Stories"
+    "title": "Ghost Stories",
+    "type": 2
   },
 
   {
     "img": "https://upload.wikimedia.org/wikipedia/en/b/b4/Encore_%28Eminem_album%29_coverart.jpg",
     "description": "Eminem",
-    "title": "Encore"
+    "title": "Encore",
+    "type": 3
   },
   {
     "img": "https://upload.wikimedia.org/wikipedia/vi/f/f1/Adele_21.jpg",
     "description": "Adele",
-    "title": "21"
+    "title": "21",
+    "type": 1
   },
   {
     "img": "https://upload.wikimedia.org/wikipedia/en/b/b2/Coldplay_-_Viva_la_Vida_or_Death_and_All_His_Friends.png",
     "description": "Coldplay",
-    "title": "Viva la Vida"
+    "title": "Viva la Vida",
+    "type": 2
   },
   {
     "img": "https://upload.wikimedia.org/wikipedia/en/6/60/Recovery_Album_Cover.jpg",
     "description": "Eminem",
-    "title": "Recovery"
+    "title": "Recovery",
+    "type": 3
   }
 ]
