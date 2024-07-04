@@ -17,6 +17,7 @@ const FeedArea = () => {
                     data={AlbumData1}
                     style={styles.albumDetail}
                     horizontal={true}
+                    showsHorizontalScrollIndicator={false}
                     renderItem={
                         ({item}) => (
                             <AlbumDetail
@@ -40,6 +41,7 @@ const FeedArea = () => {
                     data={AlbumData2}
                     style={styles.albumDetail}
                     horizontal={true}
+                    showsHorizontalScrollIndicator={false}
                     renderItem={
                         ({item}) => (
                             <AlbumDetail
