@@ -1,17 +1,58 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {View, StyleSheet, Image, Text, TouchableOpacity} from 'react-native'
 import Icons from "../../../constants/Icons"
 import Images from "../../../constants/Images"
-import {ratioH, ratioW} from "../../../utils/converter"
+import {ratioH, ratioW, secondsToTime} from "../../../utils/converter"
 import Fonts from "../../../constants/Fonts"
 import { Slider } from '@react-native-assets/slider'
 
+import TrackPlayer, {State, usePlaybackState, useProgress} from 'react-native-track-player'
 
 const Content = ({img, song, artist, link, color}) => {
-    const [isPlaying, setIsPlaying] = React.useState(false)
+    const playState = usePlaybackState()
+    const { position, buffered, duration } = useProgress()
+
+    const track = {
+        url: link,
+        title: song,
+        artist: artist,
+        duration: 127
+    }
+
+    const setup = async () => {
+        try {
+            await TrackPlayer.setupPlayer()
+            await TrackPlayer.add({
+                url: link,
+                title: song,
+                artist: artist,
+                duration: 127
+            })
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
+
+    useEffect(() => {
+        setup().then(() => {})
+    }, [])
+
+    const changePlayState = async playState => {
+        try {
+            if (playState.state === State.Playing) {
+                await TrackPlayer.pause()
+            }
+            else {
+                await TrackPlayer.play()
+            }
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
 
     const renderSongCover = () => {
-
         img = JSON.parse(JSON.stringify(img)).img
         song = JSON.parse(JSON.stringify(song)).song
         artist = JSON.parse(JSON.stringify(artist)).artist
@@ -20,7 +61,6 @@ const Content = ({img, song, artist, link, color}) => {
         return (
             <View style={styles.songCover}>
                 <View style={styles.imageWrapper}>
-
                     <Image
                         source={Images.Progress}
                         style={styles.progress(color)}
@@ -29,7 +69,6 @@ const Content = ({img, song, artist, link, color}) => {
                         source={{uri: img}}
                         style={styles.image}
                     />
-
                 </View>
             </View>
         )
@@ -48,6 +87,7 @@ const Content = ({img, song, artist, link, color}) => {
         return (
             <View style={styles.interactionButton}>
                 <TouchableOpacity
+                    onPress={() => TrackPlayer.seekTo(0)}
                     hitSlop={
                         {
                             top: ratioH(40),
@@ -61,11 +101,16 @@ const Content = ({img, song, artist, link, color}) => {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.playButton(color)}
-                    onPress={() => setIsPlaying(!isPlaying)}
+                    onPress={() => changePlayState(playState)}
                 >
-                    {isPlaying ? <Icons.Pause/> : <Icons.Play/>}
+                    {playState.state === State.Playing ? <Icons.Pause/> : <Icons.Play/>}
                 </TouchableOpacity>
                 <TouchableOpacity
+                    onPress={() => {
+                        TrackPlayer.seekTo(track.duration)
+                        TrackPlayer.pause()
+                    }
+                }
                     hitSlop={
                         {
                             top: ratioH(40),
@@ -84,9 +129,9 @@ const Content = ({img, song, artist, link, color}) => {
     const renderDuration = () => {
         return (
             <View style={styles.duration}>
-                <Text style={styles.time}>00:00</Text>
+                <Text style={styles.time}>{secondsToTime(position)}</Text>
                 <Slider
-                    value={60}
+                    value={position/track.duration * 100}
                     style={styles.slider}
                     minimumValue={0}
                     maximumValue={100}
@@ -96,9 +141,11 @@ const Content = ({img, song, artist, link, color}) => {
                     thumbTintColor="#393939"
                     thumbSize={ratioW(16)}
                     trackHeight={ratioH(6)}
+                    onValueChange={value => {
+                        TrackPlayer.seekTo(value * track.duration / 100)
+                    }}
                 />
-                <Text style={styles.time}>00:00</Text>
-
+                <Text style={styles.time}>{secondsToTime(track.duration)}</Text>
             </View>
         )
     }
