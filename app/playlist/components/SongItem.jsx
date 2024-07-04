@@ -14,11 +14,11 @@ const SongItem = ({img, song, artist, link, type}) => {
             style={styles().container}
             onPress={() => {
                 navigation.navigate('Song', {
-                        img: {img},
-                        song: {song},
-                        artist: {artist},
-                        link: {link},
-                        type: {type}
+                        img: img,
+                        song: song,
+                        artist: artist,
+                        link: link,
+                        type: type
                     })
             }}
         >

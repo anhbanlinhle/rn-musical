@@ -9,10 +9,9 @@ const Song = ({route}) => {
     const {img, song, artist, link, type} = route.params
 
     const [color, setColor] = useState('#A6B9FF')
-    let typeUI = JSON.parse(JSON.stringify(type)).type
 
     useEffect(() => {
-        switch (typeUI) {
+        switch (type) {
             case 1:
                 setColor('#A6B9FF')
                 break

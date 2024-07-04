@@ -22,12 +22,7 @@ const Content = ({img, song, artist, link, color}) => {
     const setup = async () => {
         try {
             await TrackPlayer.setupPlayer()
-            await TrackPlayer.add({
-                url: link,
-                title: song,
-                artist: artist,
-                duration: 127
-            })
+            await TrackPlayer.add(track)
         }
         catch (e) {
             console.log(e)
@@ -53,11 +48,6 @@ const Content = ({img, song, artist, link, color}) => {
     }
 
     const renderSongCover = () => {
-        img = JSON.parse(JSON.stringify(img)).img
-        song = JSON.parse(JSON.stringify(song)).song
-        artist = JSON.parse(JSON.stringify(artist)).artist
-        link = JSON.parse(JSON.stringify(link)).link
-
         return (
             <View style={styles.songCover}>
                 <View style={styles.imageWrapper}>
