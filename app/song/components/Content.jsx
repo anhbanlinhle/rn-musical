@@ -8,6 +8,7 @@ import { Slider } from '@react-native-assets/slider'
 
 
 const Content = ({img, song, artist, link}) => {
+    const [isPlaying, setIsPlaying] = React.useState(false)
 
     const renderSongCover = () => {
 
@@ -58,8 +59,11 @@ const Content = ({img, song, artist, link}) => {
                 >
                     <Icons.Previous/>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.playButton}>
-                    <Icons.Pause/>
+                <TouchableOpacity
+                    style={styles.playButton}
+                    onPress={() => setIsPlaying(!isPlaying)}
+                >
+                    {isPlaying ? <Icons.Pause/> : <Icons.Play/>}
                 </TouchableOpacity>
                 <TouchableOpacity
                     hitSlop={

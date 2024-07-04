@@ -10,6 +10,7 @@ import Detail from '../assets/icons/Detail.svg'
 import Previous from '../assets/icons/Previous.svg'
 import Next from '../assets/icons/Next.svg'
 import Pause from '../assets/icons/Pause.svg'
+import Play from '../assets/icons/Play.svg'
 import HeartFilled from '../assets/icons/HeartFilled.svg'
 import Playlist from '../assets/icons/Playlist.svg'
 import Shuffle from '../assets/icons/Shuffle.svg'
@@ -28,6 +29,7 @@ const Icons = {
     Previous,
     Next,
     Pause,
+    Play,
     HeartFilled,
     Playlist,
     Shuffle,
