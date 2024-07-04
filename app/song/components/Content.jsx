@@ -7,7 +7,7 @@ import Fonts from "../../../constants/Fonts"
 import { Slider } from '@react-native-assets/slider'
 
 
-const Content = ({img, song, artist, link}) => {
+const Content = ({img, song, artist, link, color}) => {
     const [isPlaying, setIsPlaying] = React.useState(false)
 
     const renderSongCover = () => {
@@ -23,7 +23,7 @@ const Content = ({img, song, artist, link}) => {
 
                     <Image
                         source={Images.Progress}
-                        style={styles.progress}
+                        style={styles.progress(color)}
                     />
                     <Image
                         source={{uri: img}}
@@ -60,7 +60,7 @@ const Content = ({img, song, artist, link}) => {
                     <Icons.Previous/>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={styles.playButton}
+                    style={styles.playButton(color)}
                     onPress={() => setIsPlaying(!isPlaying)}
                 >
                     {isPlaying ? <Icons.Pause/> : <Icons.Play/>}
@@ -132,13 +132,14 @@ const styles = StyleSheet.create({
         height: ratioW(231),
         // backgroundColor: 'black',
     },
-    progress: {
+    progress: (color) => ({
         width: ratioW(231),
         height: ratioW(231),
         position: 'absolute',
         top: 0,
         resizeMode: 'contain',
-    },
+        tintColor: color
+    }),
     image: {
         width: ratioW(199),
         height: ratioW(199),
@@ -169,15 +170,15 @@ const styles = StyleSheet.create({
         width: ratioW(375),
         height: ratioH(80),
     },
-    playButton: {
+    playButton: (color) => ({
         width: ratioW(80),
         height: ratioW(80),
         borderRadius: ratioW(80),
-        backgroundColor: '#A6B9FF',
+        backgroundColor: color,
         justifyContent: 'center',
         alignItems: 'center',
         marginHorizontal: ratioW(24),
-    },
+    }),
     duration: {
         marginTop: ratioH(24),
         flexDirection: 'row',

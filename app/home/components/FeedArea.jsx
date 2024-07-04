@@ -25,6 +25,7 @@ const FeedArea = () => {
                                 img={item.img}
                                 description={item.description}
                                 title={item.title}
+                                type={item.type}
                             />
                         )
                     }
@@ -49,6 +50,7 @@ const FeedArea = () => {
                                 img={item.img}
                                 description={item.description}
                                 title={item.title}
+                                type={item.type}
                             />
                         )
                     }

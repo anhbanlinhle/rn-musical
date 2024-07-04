@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native'
 import Fonts from "../../../constants/Fonts"
 import Icons from "../../../constants/Icons"
 
-const SongItem = ({img, song, artist, link}) => {
+const SongItem = ({img, song, artist, link, type}) => {
     const navigation = useNavigation()
 
     return (
@@ -17,7 +17,8 @@ const SongItem = ({img, song, artist, link}) => {
                         img: {img},
                         song: {song},
                         artist: {artist},
-                        link: {link}
+                        link: {link},
+                        type: {type}
                     })
             }}
         >

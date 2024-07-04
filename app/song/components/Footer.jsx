@@ -1,11 +1,13 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {View, StyleSheet} from 'react-native'
 import {ratioH, ratioW} from "../../../utils/converter";
 import Icons from "../../../constants/Icons";
+import Images from "../../../constants/Images";
 
-const Footer = () => {
+const Footer = ({color}) => {
+
     return (
-        <View style={styles.container}>
+        <View style={styles.container(color)}>
             <View style={styles.iconWrapper}>
                 <Icons.HeartFilled style={styles.iconHeart}/>
             </View>
@@ -20,9 +22,9 @@ const Footer = () => {
 }
 
 const styles = StyleSheet.create({
-    container: {
+    container: (bannerColor) => ({
         flex: 1,
-        backgroundColor: '#A6B9FF',
+        backgroundColor: bannerColor,
         borderTopLeftRadius: 24,
         borderTopRightRadius: 24,
         width: ratioW(375),
@@ -33,7 +35,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
         paddingTop: ratioH(32),
-    },
+    }),
     iconWrapper: {
         width: ratioW(99),
         height: ratioW(64),

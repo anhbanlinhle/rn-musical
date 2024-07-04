@@ -6,13 +6,17 @@ import Fonts from "../../../constants/Fonts"
 import { useNavigation } from '@react-navigation/native'
 import Playlist from "../../playlist/Playlist"
 
-const AlbumDetail = ({size, img, description, title}) => {
+const AlbumDetail = ({size, img, description, title, type}) => {
     const navigation = useNavigation()
 
     return (
         <TouchableOpacity
             style={styles({size}).container}
-            onPress={() => navigation.navigate('Playlist')}
+            onPress={() => {
+                navigation.navigate('Playlist', {
+                    type: {type}
+                })
+            }}
         >
                 <Image style={styles({size}).cover} source={{uri: img}}/>
                 <View style={styles({size}).textWrapper}>

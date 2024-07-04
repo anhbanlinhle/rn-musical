@@ -5,7 +5,7 @@ import SongItem from "./SongItem";
 
 import SongData from "../../../data/songs.json"
 
-const SongList = () => {
+const SongList = ({type}) => {
     return (
         <View style={styles.container}>
             <FlatList
@@ -18,6 +18,7 @@ const SongList = () => {
                             song={item.song}
                             artist={item.artist}
                             link={item.link}
+                            type={type}
                         />
                     )
                 }
