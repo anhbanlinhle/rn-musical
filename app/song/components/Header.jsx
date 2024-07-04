@@ -12,7 +12,12 @@ const Header = ({color}) => {
             <TouchableOpacity onPress={() => navigation.goBack()}>
                 <Icons.Back style={styles.iconBack}/>
             </TouchableOpacity>
-            <Icons.Download style={styles.iconDownload}/>
+            <TouchableOpacity
+                style={styles.iconDownload}
+                onPress={() => navigation.navigate("TestScreen")}
+            >
+                <Icons.Download style={styles.iconBack}/>
+            </TouchableOpacity>
         </View>
     )
 }

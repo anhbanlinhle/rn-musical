@@ -6,6 +6,7 @@ import Onboard from "./onboard/Onboard"
 import Home from "./home/Home"
 import Playlist from "./playlist/Playlist"
 import Song from "./song/Song"
+import TestScreen from "./test/TestScreen"
 
 const Stack = createNativeStackNavigator()
 
@@ -31,6 +32,11 @@ const App = () => {
                 <Stack.Screen
                     name={"Song"}
                     component={Song}
+                    options={{headerShown: false}}
+                />
+                <Stack.Screen
+                    name={"TestScreen"}
+                    component={TestScreen}
                     options={{headerShown: false}}
                 />
             </Stack.Navigator>
