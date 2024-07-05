@@ -6,6 +6,13 @@ import Images from "../../../constants/Images"
 import Fonts from "../../../constants/Fonts"
 import {useNavigation} from "@react-navigation/native"
 
+import Animated, {
+    Easing,
+    useAnimatedStyle,
+    useSharedValue,
+    withRepeat, withSpring,
+} from 'react-native-reanimated'
+
 const Banner = ({type}) => {
     const navigation = useNavigation()
     const [imgSrc, setImgSrc] = useState(null)
@@ -30,13 +37,46 @@ const Banner = ({type}) => {
         }
     }, [])
 
+    const [isLoved, setLoved] = useState(false)
+
+    const sv = useSharedValue(1)
+
+    const scaleLoveIcon = useAnimatedStyle(() => ({
+        transform: [{scale:
+            withRepeat(
+                withSpring(sv.value, {duration: 300,easing: Easing.bounce}),
+            2,
+            true
+            )
+        }]
+    }))
+
+    const handleLove = () => {
+        if (sv.value === 1.5) {
+            sv.value -= 0.5
+        }
+        sv.value = 1.5
+    }
+
     const renderHeader = () => {
         return (
             <View style={styles().playlistHeader}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
                     <Icons.Back style={styles().iconBack}/>
                 </TouchableOpacity>
-                <Icons.Heart style={styles().iconLove}/>
+                <Animated.View
+                    style={[
+                        styles().favoriteWrapper,
+                        scaleLoveIcon
+                    ]}
+                >
+                    <TouchableOpacity onPress={() => {
+                        handleLove()
+                        setLoved(!isLoved)
+                    }}>
+                        <Icons.Heart style={styles().iconLove} fill={isLoved ? 'red' : 'none'}/>
+                    </TouchableOpacity>
+                </Animated.View>
                 <Icons.Download style={styles().iconDownload}/>
             </View>
         )
@@ -93,11 +133,13 @@ const styles = (props) => StyleSheet.create({
         width: ratioW(32),
         height: ratioW(32),
     },
+    favoriteWrapper: {
+        position: 'absolute',
+        right: 0 + ratioW(32 + 18)
+    },
     iconLove: {
         width: ratioW(32),
         height: ratioW(32),
-        position: 'absolute',
-        right: 0 + ratioW(32 + 18)
     },
     iconDownload: {
         width: ratioW(32),
