@@ -13,7 +13,7 @@ import Animated, {
     withTiming,
 } from 'react-native-reanimated'
 
-const duration = 5000
+const duration = 3000
 const easing = Easing.linear
 
 const TestScreen2 = () => {
@@ -54,31 +54,28 @@ const TestScreen2 = () => {
 
     const renderSongCover = () => {
         return (
-            <View style={styles.songCover}>
-                <View style={styles.imageWrapper}>
-                    <Animated.View
-                        style={[
-                            styles.progress(color),
-                            spin1
-                        ]}
-                    >
-                        <Image
-                            source={Images.Progress}
-                            style={styles.circle(color)}
-                        />
-                    </Animated.View>
-                    <Animated.View
-                        style={[
-                            styles.image,
-                            spin2
-                        ]}
-                    >
-                        <Image
-                            source={{uri: img}}
-                            style={styles.image}
-                        />
-                    </Animated.View>
-                </View>
+            <View style={styles.imageWrapper}>
+                <Animated.View
+                    style={[
+                        styles.progress(color),
+                        spin1
+                    ]}
+                >
+                    <Image
+                        source={Images.Progress}
+                        style={styles.circle(color)}
+                    />
+                </Animated.View>
+                <Animated.View
+                    style={[
+                        styles.image,
+                        spin2
+                    ]}
+                >
+                    <Image
+                        source={{uri: img}}
+                    />
+                </Animated.View>
             </View>
         )
     }
@@ -126,9 +123,6 @@ const styles = StyleSheet.create({
     iconBack: {
         width: ratioH(64),
         height: ratioH(64),
-    },
-    songCover: {
-
     },
     imageWrapper: {
         // marginTop: ratioH(48),

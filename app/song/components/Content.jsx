@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import {View, StyleSheet, Image, Text, TouchableOpacity} from 'react-native'
 import Icons from "../../../constants/Icons"
 import Images from "../../../constants/Images"
@@ -7,6 +7,15 @@ import Fonts from "../../../constants/Fonts"
 import { Slider } from '@react-native-assets/slider'
 
 import TrackPlayer, {State, usePlaybackState, useProgress} from 'react-native-track-player'
+
+import Animated, {
+    cancelAnimation,
+    Easing,
+    useAnimatedStyle,
+    useSharedValue,
+    withRepeat,
+    withTiming,
+} from 'react-native-reanimated'
 
 const Content = ({img, song, artist, link, color}) => {
     const playState = usePlaybackState()
@@ -47,20 +56,54 @@ const Content = ({img, song, artist, link, color}) => {
         }
     }
 
+    const spinDuration = 4000
+    const easing = Easing.linear
+
+    const sv = useSharedValue(0)
+
+    const spin1 = useAnimatedStyle(() => ({
+        transform: [{ rotate: `${sv.value * 360}deg` }],
+    }))
+    const spin2 = useAnimatedStyle(() => ({
+        transform: [{ rotate: `${sv.value * -360}deg` }],
+    }))
+
+    useEffect(() => {
+        if (playState.state === State.Playing) {
+            sv.value = withRepeat(withTiming(1, { duration: spinDuration, easing }), -1);
+        }
+        else {
+            cancelAnimation(sv)
+            sv.value = 0
+        }
+    }, [playState.state]);
+
     const renderSongCover = () => {
         return (
-            <View style={styles.songCover}>
-                <View style={styles.imageWrapper}>
+            <View style={styles.imageWrapper}>
+                <Animated.View
+                    style={[
+                        styles.progressWrapper(color),
+                        spin1
+                    ]}
+                >
                     <Image
                         source={Images.Progress}
                         style={styles.progress(color)}
                     />
+                </Animated.View>
+                <Animated.View
+                    style={[
+                        styles.artworkWrapper,
+                        spin2
+                    ]}
+                >
                     <Image
                         source={{uri: img}}
-                        style={styles.image}
+                        style={[styles.artwork]}
                     />
+                </Animated.View>
                 </View>
-            </View>
         )
     }
 
@@ -162,22 +205,25 @@ const styles = StyleSheet.create({
 
     },
     imageWrapper: {
-        marginTop: ratioH(48),
+        marginTop: ratioH(24),
         justifyContent: 'center',
         alignItems: 'center',
-        width: ratioW(231),
-        height: ratioW(231),
-        // backgroundColor: 'black',
+        width: ratioW(260),
+        height: ratioW(260),
+        // backgroundColor: 'green',
     },
-    progress: (color) => ({
-        width: ratioW(231),
-        height: ratioW(231),
+    progressWrapper: (color) => ({
         position: 'absolute',
-        top: 0,
-        resizeMode: 'contain',
-        tintColor: color
     }),
-    image: {
+    progress: (color) => ({
+        width: ratioW(256),
+        height: ratioW(256),
+        tintColor: color,
+    }),
+    artworkWrapper: {
+        position: 'absolute'
+    },
+    artwork: {
         width: ratioW(199),
         height: ratioW(199),
         borderRadius: ratioW(199),

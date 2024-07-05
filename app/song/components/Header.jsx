@@ -14,7 +14,7 @@ const Header = ({color}) => {
             </TouchableOpacity>
             <TouchableOpacity
                 style={styles.iconDownload}
-                onPress={() => navigation.navigate("TestScreen2")}
+                onPress={() => navigation.navigate("TestScreen")}
             >
                 <Icons.Download style={styles.iconBack}/>
             </TouchableOpacity>
