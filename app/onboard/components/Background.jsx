@@ -3,12 +3,19 @@ import {View, StyleSheet, ImageBackground} from 'react-native'
 import {ratioW} from "../../../utils/converter"
 
 import Images from "../../../constants/Images"
+import {useSelector} from "react-redux";
+import {backgroundPrimary, backgroundSecondary} from "../../../constants/Colors";
 
 const Background = () => {
+    const theme = useSelector(state => state.appData.theme)
+
     return (
         <ImageBackground
             source={Images.Onboard1}
             style={styles.background}
+            imageStyle={{
+                tintColor: backgroundSecondary(theme)
+            }}
         />
     )
 }
@@ -21,7 +28,7 @@ const styles = StyleSheet.create({
         left: 0,
         bottom: 0,
         zIndex: -9999,
-        resizeMode: 'contain',
+        resizeMode: 'contain'
     },
 })
 

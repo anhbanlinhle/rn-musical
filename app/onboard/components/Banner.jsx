@@ -4,8 +4,12 @@ import {ratioH} from "../../../utils/converter"
 import Fonts from "../../../constants/Fonts"
 
 import Images from "../../../constants/Images"
+import {useSelector} from "react-redux";
+import {textPrimary} from "../../../constants/Colors";
 
 const Banner = () => {
+    const theme = useSelector(state => state.appData.theme)
+
     return (
         <View style={styles.banner}>
             <View style={styles.bannerAppName}>
@@ -13,7 +17,7 @@ const Banner = () => {
                 <Text style={styles.appName}>Musical</Text>
             </View>
             <View style={styles.bannerWelcome}>
-                <Text style={styles.bannerWelcomeText}>Let the music {"\n"}take you away...</Text>
+                <Text style={styles.bannerWelcomeText(theme)}>Let the music {"\n"}take you away...</Text>
             </View>
         </View>
     )
@@ -46,11 +50,11 @@ const styles = StyleSheet.create({
         alignItems: 'left',
         justifyContent: 'center',
     },
-    bannerWelcomeText: {
+    bannerWelcomeText: (theme) => ({
         ...Fonts.semiBold,
         fontSize: ratioH(32),
-        color: '#191D21'
-    },
+        color: textPrimary(theme)
+    }),
 })
 
 export default Banner

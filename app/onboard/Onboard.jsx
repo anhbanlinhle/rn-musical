@@ -5,10 +5,14 @@ import Background from "./components/Background"
 import Banner from "./components/Banner"
 import Logo from "./components/Logo"
 import HomeButton from "./components/HomeButton"
+import {useSelector} from "react-redux";
+import {backgroundPrimary} from "../../constants/Colors";
 
 const Onboard = () => {
+    const theme = useSelector(state => state.appData.theme)
+
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styles.container(theme)}>
             <Background/>
             <Banner/>
             <Logo/>
@@ -18,14 +22,14 @@ const Onboard = () => {
 }
 
 const styles = StyleSheet.create({
-    container: {
+    container: (theme) => ({
         flexDirection: 'column',
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: backgroundPrimary(theme),
         alignItems: 'center',
         justifyContent: 'center',
         gap: 24
-    }
+    })
 })
 
 export default Onboard

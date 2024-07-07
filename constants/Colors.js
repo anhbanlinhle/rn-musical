@@ -1,9 +1,9 @@
 export const backgroundPrimary = (theme) => {
-    return theme === 'light' ? '#F9F6EE' : '#28282B'
+    return theme === 'light' ? '#FAF9F6' : '#28282B'
 }
 
 export const backgroundSecondary = (theme) => {
-    return theme === 'light' ? '#FFFFF0' : '#343434'
+    return theme === 'light' ? '#EFF4F4' : '#343434'
 }
 
 export const textPrimary = (theme) => {
@@ -11,7 +11,7 @@ export const textPrimary = (theme) => {
 }
 
 export const searchArea = (theme) => {
-    return theme === 'light' ? '#E8EEF3' : '#17110C'
+    return theme === 'light' ? '#E8EEF3' : '#344652'
 }
 
 export const shadowColor = (theme) => {
