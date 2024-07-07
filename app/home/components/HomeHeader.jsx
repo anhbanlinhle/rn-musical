@@ -5,6 +5,8 @@ import {ratioH, ratioW} from "../../../utils/converter"
 import Fonts from "../../../constants/Fonts"
 import Images from "../../../constants/Images"
 import {useNavigation} from "@react-navigation/native";
+import {useSelector} from "react-redux";
+import {textPrimary} from "../../../constants/Colors";
 
 let User = {
     name: "Linh",
@@ -13,6 +15,9 @@ let User = {
 
 const HomeHeader = () => {
     const navigation = useNavigation()
+
+    const theme = useSelector(state => state.appData.theme)
+
     return (
         <View style={styles.container}>
             <TouchableOpacity
@@ -24,11 +29,11 @@ const HomeHeader = () => {
                 />
             </TouchableOpacity>
             <View style={styles.message}>
-                <Text style={styles.greeting}>Hi,{" "}
-                    <Text style={styles.name}>{User.name}</Text>
+                <Text style={styles.greeting(theme)}>Hi,{" "}
+                    <Text style={styles.name(theme)}>{User.name}</Text>
                 </Text>
             </View>
-            <Icons.Menu style={styles.dropDown}/>
+            <Icons.Menu style={styles.dropDown} fill={textPrimary(theme)}/>
         </View>
     )
 }
@@ -49,17 +54,16 @@ const styles = StyleSheet.create({
         height: ratioW(41),
         marginHorizontal: ratioH(16),
     },
-    greeting: {
+    greeting: (theme) => ({
         ...Fonts.regular,
         fontSize: ratioH(32),
-        color: '#191D21'
-    },
-    name: {
+        color: textPrimary(theme)
+    }),
+    name: (theme) => ({
         ...Fonts.semiBold,
         fontSize: ratioH(32),
-        color: '#191D21'
-
-    },
+        color: textPrimary(theme)
+    }),
     dropDown: {
         width: ratioW(32),
         height: ratioW(32),

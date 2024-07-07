@@ -1,7 +1,7 @@
 import { combineReducers, createStore } from "redux"
 
 const initialState = {
-    theme: 'light',
+    theme: 'dark',
     songIndex: -1,
     songName: '',
     songCover: ''

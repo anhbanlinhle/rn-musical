@@ -6,13 +6,17 @@ import AlbumDetail from "./AlbumDetail"
 
 import AlbumData1 from '../../../data/albums-1.json'
 import AlbumData2 from '../../../data/albums-2.json'
+import {useSelector} from "react-redux";
+import {backgroundPrimary, textPrimary} from "../../../constants/Colors";
 
 
 const FeedArea = () => {
+    const theme = useSelector(state => state.appData.theme)
+
     const renderPopularSection = () => {
         return (
             <View style={styles.popularSection}>
-                <Text style={styles.title}>Popular</Text>
+                <Text style={styles.title(theme)}>Popular</Text>
                 <FlatList
                     data={AlbumData1}
                     style={styles.albumDetail}
@@ -37,7 +41,7 @@ const FeedArea = () => {
     const renderTopAlbumSection = () => {
         return (
             <View style={styles.topAlbumSection}>
-                <Text style={styles.title}>Top Albums</Text>
+                <Text style={styles.title(theme)}>Top Albums</Text>
                 <FlatList
                     data={AlbumData2}
                     style={styles.albumDetail}
@@ -60,7 +64,7 @@ const FeedArea = () => {
     }
 
     return (
-        <View style={styles.container}>
+        <View style={styles.container(theme)}>
             <ScrollView>
                 {renderPopularSection()}
                 {renderTopAlbumSection()}
@@ -70,17 +74,17 @@ const FeedArea = () => {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#F9F6EE',
+    container: (theme) => ({
+        backgroundColor: backgroundPrimary(theme),
         flexDirection: 'row',
         marginLeft: ratioW(24),
-    },
-    title: {
+    }),
+    title: (theme) => ({
         ...Fonts.semiBold,
         fontSize: ratioW(24),
-        color: '#191D21',
+        color: textPrimary(theme),
         marginBottom: ratioH(16),
-    },
+    }),
     popularSection: {
     },
     topAlbumSection: {

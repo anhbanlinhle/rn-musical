@@ -5,3 +5,7 @@ export const backgroundPrimary = (theme) => {
 export const textPrimary = (theme) => {
     return theme === 'light' ? '#191D21' : '#FAF9F6'
 }
+
+export const searchArea = (theme) => {
+    return theme === 'light' ? '#E8EEF3' : '#17110C'
+}
