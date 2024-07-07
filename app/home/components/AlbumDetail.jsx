@@ -4,14 +4,16 @@ import {ratioW, ratioH} from "../../../utils/converter"
 import Fonts from "../../../constants/Fonts"
 
 import { useNavigation } from '@react-navigation/native'
-import Playlist from "../../playlist/Playlist"
+import {useSelector} from "react-redux";
+import {backgroundPrimary, backgroundSecondary, shadowColor, textPrimary} from "../../../constants/Colors";
 
 const AlbumDetail = ({size, img, description, title, type}) => {
     const navigation = useNavigation()
+    const theme = useSelector(state => state.appData.theme)
 
     return (
         <TouchableOpacity
-            style={styles({size}).container}
+            style={styles({size}).container(theme)}
             onPress={() => {
                 navigation.navigate('Playlist', {
                     type: {type}
@@ -20,21 +22,21 @@ const AlbumDetail = ({size, img, description, title, type}) => {
         >
                 <Image style={styles({size}).cover} source={{uri: img}}/>
                 <View style={styles({size}).textWrapper}>
-                    <Text style={styles({size}).description}>{description}</Text>
-                    <Text style={styles({size}).title}>{title}</Text>
+                    <Text style={styles({size}).description(theme)}>{description}</Text>
+                    <Text style={styles({size}).title(theme)}>{title}</Text>
                 </View>
         </TouchableOpacity>
     )
 }
 
 const styles = (props) => StyleSheet.create({
-    container: {
+    container: (theme) => ({
         flexDirection: 'column',
-        backgroundColor: '#FFFFF0',
+        backgroundColor: backgroundSecondary(theme),
         borderRadius: 16,
         width: ratioH(props.size) * 254,
         height: ratioH(props.size) * 283,
-        shadowColor: "black",
+        shadowColor: shadowColor(theme),
         shadowOffset: {
             width: 0,
             height: 1,
@@ -45,7 +47,7 @@ const styles = (props) => StyleSheet.create({
         marginRight: 16,
         marginLeft: 2,
         marginTop: 2
-    },
+    }),
     cover: {
         width: ratioH(props.size * 254),
         height: ratioH(props.size * 200),
@@ -56,16 +58,16 @@ const styles = (props) => StyleSheet.create({
     textWrapper: {
         padding: ratioH(props.size * 16),
     },
-    title: {
+    title: (theme) => ({
         ...Fonts.semiBold,
         fontSize: ratioH(props.size * 24),
-        color: '#191D21'
-    },
-    description: {
+        color: textPrimary(theme)
+    }),
+    description: (theme) => ({
         ...Fonts.regular,
         fontSize: ratioH(props.size * 12),
-        color: '#191D21'
-    }
+        color: textPrimary(theme)
+    })
 })
 
 export default AlbumDetail
