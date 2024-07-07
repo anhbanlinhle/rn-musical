@@ -5,8 +5,9 @@ import {ratioH, ratioW} from "../../../utils/converter"
 import Fonts from "../../../constants/Fonts"
 import Images from "../../../constants/Images"
 import {useNavigation} from "@react-navigation/native";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {textPrimary} from "../../../constants/Colors";
+import {changeThemeAction} from "../../../store/themeAction";
 
 let User = {
     name: "Linh",
@@ -17,6 +18,7 @@ const HomeHeader = () => {
     const navigation = useNavigation()
 
     const theme = useSelector(state => state.appData.theme)
+    const dispatch = useDispatch()
 
     return (
         <View style={styles.container}>
@@ -33,7 +35,11 @@ const HomeHeader = () => {
                     <Text style={styles.name(theme)}>{User.name}</Text>
                 </Text>
             </View>
-            <Icons.Menu style={styles.dropDown} fill={textPrimary(theme)}/>
+            <TouchableOpacity
+                onPress={() => dispatch(changeThemeAction(theme))}
+            >
+                <Icons.Menu style={styles.dropDown} fill={textPrimary(theme)}/>
+            </TouchableOpacity>
         </View>
     )
 }

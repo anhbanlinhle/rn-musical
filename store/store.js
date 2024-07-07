@@ -1,14 +1,8 @@
 import { combineReducers, createStore } from "redux"
-
-const initialState = {
-    theme: 'dark',
-    songIndex: -1,
-    songName: '',
-    songCover: ''
-}
+import themeReducer from "./themeReducer"
 
 const rootReducer = combineReducers({
-    appData: () => initialState
+    appData: themeReducer
 })
 
 export const store = createStore(rootReducer)
