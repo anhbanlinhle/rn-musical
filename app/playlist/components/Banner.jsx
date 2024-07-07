@@ -12,25 +12,28 @@ import Animated, {
     useSharedValue,
     withRepeat, withSpring,
 } from 'react-native-reanimated'
+import {useSelector} from "react-redux";
+import {blue, orange, purple, textPrimary, textSecondary} from "../../../constants/Colors";
 
 const Banner = ({type}) => {
     const navigation = useNavigation()
     const [imgSrc, setImgSrc] = useState(null)
     const [bannerColor, setColor] = useState('#A6B9FF')
+    const theme = useSelector(state => state.appData.theme)
 
     useEffect(() => {
         switch (type) {
             case 1:
                 setImgSrc(Images.GenreCover1)
-                setColor('#A6B9FF')
+                setColor(blue(theme))
                 break
             case 2:
                 setImgSrc(Images.GenreCover2)
-                setColor('#FFC76F')
+                setColor(orange(theme))
                 break
             case 3:
                 setImgSrc(Images.GenreCover3)
-                setColor('#BBA5FF')
+                setColor(purple(theme))
                 break
             default:
                 console.log('No type')
@@ -62,7 +65,10 @@ const Banner = ({type}) => {
         return (
             <View style={styles().playlistHeader}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <Icons.Back style={styles().iconBack}/>
+                    <Icons.Back
+                        style={styles().iconBack}
+                        fill={textPrimary(theme)}
+                    />
                 </TouchableOpacity>
                 <Animated.View
                     style={[
@@ -74,10 +80,17 @@ const Banner = ({type}) => {
                         handleLove()
                         setLoved(!isLoved)
                     }}>
-                        <Icons.Heart style={styles().iconLove} fill={isLoved ? 'red' : 'none'}/>
+                        <Icons.Heart
+                            style={styles().iconLove}
+                            fill={isLoved ? 'red' : 'none'}
+                            stroke={textPrimary(theme)}
+                        />
                     </TouchableOpacity>
                 </Animated.View>
-                <Icons.Download style={styles().iconDownload}/>
+                <Icons.Download
+                    style={styles().iconDownload}
+                    fill={textPrimary(theme)}
+                />
             </View>
         )
     }
@@ -96,8 +109,8 @@ const Banner = ({type}) => {
     const renderDescription = () => {
         return (
             <View style={styles().description}>
-                <Text style={styles().mainTitle}>Songs to sing out loud</Text>
-                <Text style={styles().subTitle}>30 songs to sing in the shower</Text>
+                <Text style={styles().mainTitle(theme)}>Songs to sing out loud</Text>
+                <Text style={styles().subTitle(theme)}>30 songs to sing in the shower</Text>
             </View>
         )
     }
@@ -154,16 +167,16 @@ const styles = (props) => StyleSheet.create({
     description: {
         marginHorizontal: ratioW(38),
     },
-    mainTitle: {
+    mainTitle: (theme) => ({
         ...Fonts.semiBold,
         fontSize: ratioW(24),
-        color: '#191D21'
-    },
-    subTitle: {
+        color: textPrimary(theme)
+    }),
+    subTitle: (theme) => ({
         ...Fonts.regular,
         fontSize: ratioW(14),
-        color: '#656F77'
-    },
+        color: textSecondary(theme),
+    }),
 
 })
 

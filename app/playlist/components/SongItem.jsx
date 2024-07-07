@@ -5,8 +5,11 @@ import {ratioH, ratioW} from "../../../utils/converter"
 import { useNavigation } from '@react-navigation/native'
 import Fonts from "../../../constants/Fonts"
 import Icons from "../../../constants/Icons"
+import {useSelector} from "react-redux";
+import {textPrimary} from "../../../constants/Colors";
 
 const SongItem = ({img, song, artist, link, type}) => {
+    const theme = useSelector(state => state.appData.theme)
     const navigation = useNavigation()
 
     return (
@@ -24,7 +27,7 @@ const SongItem = ({img, song, artist, link, type}) => {
         >
             <Image style={styles().cover} source={{uri: img}}/>
             <View style={styles().textWrapper}>
-                <Text style={styles().songName}>{song}</Text>
+                <Text style={styles().songName(theme)}>{song}</Text>
                 <Text style={styles().songArtist}>{artist}</Text>
             </View>
             <Icons.Detail style={styles().detail}/>
@@ -49,10 +52,10 @@ const styles = (props) => StyleSheet.create({
     textWrapper: {
         marginLeft: ratioW(15)
     },
-    songName: {
+    songName: (theme) => ({
         ...Fonts.semiBold,
-        color: "#191D21"
-    },
+        color: textPrimary(theme),
+    }),
     songArtist: {
         ...Fonts.regular,
         color: "#ACB8C2"
