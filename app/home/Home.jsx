@@ -4,8 +4,11 @@ import HomeHeader from "./components/HomeHeader"
 import SearchArea from "./components/SearchArea"
 import FeedArea from "./components/FeedArea"
 import {ratioH, ratioW} from "../../utils/converter"
+import {useSelector} from "react-redux";
 
 const Home = () => {
+    const theme = useSelector(state => state.appData.theme)
+
     return (
         <SafeAreaView style={styles.wrapper}>
             <View style={styles.container}>
