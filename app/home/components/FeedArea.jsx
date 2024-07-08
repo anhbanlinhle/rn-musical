@@ -8,10 +8,31 @@ import AlbumData1 from '../../../data/albums-1.json'
 import AlbumData2 from '../../../data/albums-2.json'
 import {useSelector} from "react-redux";
 import {backgroundPrimary, textPrimary} from "../../../constants/Colors";
+import Images from "../../../constants/Images";
 
 
 const FeedArea = () => {
     const theme = useSelector(state => state.appData.theme)
+    const likedSongs = useSelector(state => state.likedData.likedSongs)
+
+    const renderLikedSongs = () => {
+        return (
+            likedSongs.length > 0 ? (
+                <View style={styles.popularSection}>
+                    <Text style={styles.title(theme)}>Liked Songs</Text>
+                    <View style={styles.albumDetail}>
+                        <AlbumDetail
+                            size={1}
+                            img={"https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg"}
+                            description={`${likedSongs.length} songs`}
+                            title={"Liked Songs"}
+                            type={3}
+                        />
+                    </View>
+                </View>
+            ) : null
+        )
+    }
 
     const renderPopularSection = () => {
         return (
@@ -66,6 +87,7 @@ const FeedArea = () => {
     return (
         <View style={styles.container(theme)}>
             <ScrollView>
+                {renderLikedSongs()}
                 {renderPopularSection()}
                 {renderTopAlbumSection()}
             </ScrollView>
