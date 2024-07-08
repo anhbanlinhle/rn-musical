@@ -9,14 +9,13 @@ import {backgroundPrimary} from "../../constants/Colors";
 const Playlist = ({route}) => {
     const theme = useSelector(state => state.appData.theme)
 
-    let {type} = route.params
-    type = JSON.parse(JSON.stringify(type)).type
+    let {type, index} = route.params
 
     return (
         <View style={styles.container(theme)}>
             <ScrollView bounces={false}>
-                <Banner type={type}/>
-                <SongList type={type}/>
+                <Banner type={type} index={index}/>
+                <SongList type={type} index={index}/>
             </ScrollView>
         </View>
     )

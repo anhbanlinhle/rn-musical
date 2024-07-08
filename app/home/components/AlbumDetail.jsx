@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native'
 import {useSelector} from "react-redux";
 import {backgroundPrimary, backgroundSecondary, shadowColor, textPrimary} from "../../../constants/Colors";
 
-const AlbumDetail = ({size, img, description, title, type}) => {
+const AlbumDetail = ({size, img, description, title, type, index}) => {
     const navigation = useNavigation()
     const theme = useSelector(state => state.appData.theme)
 
@@ -16,7 +16,8 @@ const AlbumDetail = ({size, img, description, title, type}) => {
             style={styles({size}).container(theme)}
             onPress={() => {
                 navigation.navigate('Playlist', {
-                    type: {type}
+                    type: type,
+                    index: index
                 })
             }}
         >

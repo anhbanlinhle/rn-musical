@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, StyleSheet, ScrollView, Text, Image, FlatList} from 'react-native'
+import {View, StyleSheet, ScrollView, Text, Image, FlatList, TouchableOpacity} from 'react-native'
 import Fonts from "../../../constants/Fonts"
 import {ratioW, ratioH} from "../../../utils/converter"
 import AlbumDetail from "./AlbumDetail"
@@ -13,20 +13,21 @@ import Images from "../../../constants/Images";
 
 const FeedArea = () => {
     const theme = useSelector(state => state.appData.theme)
-    const likedSongs = useSelector(state => state.likedData.likedSongs)
+    const likedPlaylists = useSelector(state => state.likedData.likedPlaylists)
 
     const renderLikedSongs = () => {
         return (
-            likedSongs.length > 0 ? (
+            likedPlaylists.length > 0 ? (
                 <View style={styles.popularSection}>
-                    <Text style={styles.title(theme)}>Liked Songs</Text>
+                    <Text style={styles.title(theme)}>Liked Playlists</Text>
                     <View style={styles.albumDetail}>
                         <AlbumDetail
                             size={1}
                             img={"https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg"}
-                            description={`${likedSongs.length} songs`}
-                            title={"Liked Songs"}
+                            description={`${likedPlaylists.length} playlists`}
+                            title={"Liked Playlists"}
                             type={3}
+                            index={-1}
                         />
                     </View>
                 </View>
@@ -51,6 +52,7 @@ const FeedArea = () => {
                                 description={item.description}
                                 title={item.title}
                                 type={item.type}
+                                index={item.id}
                             />
                         )
                     }
@@ -76,6 +78,7 @@ const FeedArea = () => {
                                 description={item.description}
                                 title={item.title}
                                 type={item.type}
+                                index={item.id}
                             />
                         )
                     }
