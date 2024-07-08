@@ -8,6 +8,7 @@ const Images = {
     GenreCover2: require('../assets/images/GenreCover2.png'),
     GenreCover3: require('../assets/images/GenreCover3.png'),
     Progress: require('../assets/images/Progress.png'),
+    LikedSongs: require('../assets/images/LikedSongs.png'),
 }
 
 export default Images

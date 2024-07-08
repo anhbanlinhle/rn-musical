@@ -11,7 +11,7 @@ export const textPrimary = (theme) => {
 }
 
 export const textSecondary = (theme) => {
-    return theme === 'light' ? '#6E798C' : '#d0d0d0'
+    return theme === 'light' ? '#656F77' : '#d0d0d0'
 
 }
 
