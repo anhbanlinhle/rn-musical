@@ -12,14 +12,17 @@ import Animated, {
     useSharedValue,
     withRepeat, withSpring,
 } from 'react-native-reanimated'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {blue, orange, purple, textPrimary, textSecondary} from "../../../constants/Colors";
+import {addSongAction, removeSongAction} from "../../../store/likedAction";
 
-const Banner = ({type}) => {
+const Banner = ({type, index}) => {
     const navigation = useNavigation()
     const [imgSrc, setImgSrc] = useState(null)
     const [bannerColor, setColor] = useState('#A6B9FF')
     const theme = useSelector(state => state.appData.theme)
+    const dispatch = useDispatch()
+    const likedPlaylist = useSelector(state => state.likedData.likedPlaylists)
 
     useEffect(() => {
         switch (type) {
@@ -40,8 +43,7 @@ const Banner = ({type}) => {
         }
     }, [])
 
-    const [isLoved, setLoved] = useState(false)
-
+    const [isLoved, setLoved] = useState(likedPlaylist.includes(index))
     const sv = useSharedValue(1)
 
     const scaleLoveIcon = useAnimatedStyle(() => ({
@@ -79,6 +81,7 @@ const Banner = ({type}) => {
                     <TouchableOpacity onPress={() => {
                         handleLove()
                         setLoved(!isLoved)
+                        isLoved ? dispatch(removeSongAction(index)) : dispatch(addSongAction(index))
                     }}>
                         <Icons.Heart
                             style={styles().iconLove}

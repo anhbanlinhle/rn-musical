@@ -1,15 +1,15 @@
 const initialState = {
-    likedSongs: ["1"],
+    likedPlaylists: [],
 }
 
 export default (state = initialState, {type, payload}) => {
     switch (type) {
-        case 'ADD_SONG':
-            const addedList = [payload, ...state.likedSongs]
-            return {...state, songIndex: addedList}
-        case 'REMOVE_SONG':
-            const removedList = state.likedSongs.filter((index) => index !== payload)
-            return {...state, songIndex: removedList}
+        case 'ADD_PLAYLIST':
+            const addedList = [payload, ...state.likedPlaylists]
+            return {...state, likedPlaylists: addedList}
+        case 'REMOVE_PLAYLIST':
+            const removedList = state.likedPlaylists.filter((index) => index !== payload)
+            return {...state, likedPlaylists: removedList}
         default:
             return state
     }

@@ -1,13 +1,13 @@
-export const addSongAction = (songIndex) => {
+export const addSongAction = (playlistIndex) => {
     return {
-        type: 'ADD_SONG',
-        payload: songIndex
+        type: 'ADD_PLAYLIST',
+        payload: playlistIndex
     }
 }
 
-export const removeSongAction = (songIndex) => {
+export const removeSongAction = (playlistIndex) => {
     return {
-        type: 'REMOVE_SONG',
-        payload: songIndex
+        type: 'REMOVE_PLAYLIST',
+        payload: playlistIndex
     }
 }
