@@ -18,10 +18,12 @@ import Animated, {
 } from 'react-native-reanimated'
 import {useSelector} from "react-redux";
 import {backgroundPrimary, textPrimary, textSecondary} from "../../../constants/Colors";
+import {selectTheme} from "../../../store/themeSlice";
 
 const Content = ({img, song, artist, link, color}) => {
     const playState = usePlaybackState()
-    const theme = useSelector(state => state.appData.theme)
+    const theme = useSelector(selectTheme).theme
+
     const { position, buffered, duration } = useProgress()
 
     const track = {

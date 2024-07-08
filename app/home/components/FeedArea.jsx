@@ -6,14 +6,17 @@ import AlbumDetail from "./AlbumDetail"
 
 import AlbumData1 from '../../../data/albums-1.json'
 import AlbumData2 from '../../../data/albums-2.json'
-import {useSelector} from "react-redux";
 import {backgroundPrimary, textPrimary} from "../../../constants/Colors";
 import Images from "../../../constants/Images";
+import {selectTheme} from "../../../store/themeSlice";
+import {useSelector} from "react-redux";
 
 
 const FeedArea = () => {
-    const theme = useSelector(state => state.appData.theme)
-    const likedPlaylists = useSelector(state => state.likedData.likedPlaylists)
+    // const theme = useSelector(state => state.appData.theme)
+    // const likedPlaylists = useSelector(state => state.likedData.likedPlaylists)
+    const likedPlaylists = []
+    const theme = useSelector(selectTheme).theme
 
     const renderLikedSongs = () => {
         return (

@@ -5,9 +5,10 @@ import {ratioH, ratioW} from "../../../utils/converter";
 import Icons from "../../../constants/Icons";
 import {useSelector} from "react-redux";
 import {searchArea, textPrimary} from "../../../constants/Colors";
+import {selectTheme} from "../../../store/themeSlice";
 
 const SearchArea = () => {
-    const theme = useSelector(state => state.appData.theme)
+    const theme = useSelector(selectTheme).theme
 
     return (
         <View style={styles.container(theme)}>

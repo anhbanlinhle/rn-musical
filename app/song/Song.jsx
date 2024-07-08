@@ -5,12 +5,14 @@ import Content from "./components/Content"
 import Footer from "./components/Footer"
 import {useSelector} from "react-redux";
 import {blue, orange, purple} from "../../constants/Colors";
+import {selectTheme} from "../../store/themeSlice";
 
 
 const Song = ({route}) => {
     const {img, song, artist, link, type} = route.params
 
-    const theme = useSelector(state => state.appData.theme)
+    const theme = useSelector(selectTheme).theme
+
     const [color, setColor] = useState('#A6B9FF')
 
     useEffect(() => {

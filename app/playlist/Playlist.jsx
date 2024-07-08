@@ -5,9 +5,10 @@ import SongList from "./components/SongList"
 import Images from "../../constants/Images";
 import {useSelector} from "react-redux";
 import {backgroundPrimary} from "../../constants/Colors";
+import {selectTheme} from "../../store/themeSlice";
 
 const Playlist = ({route}) => {
-    const theme = useSelector(state => state.appData.theme)
+    const theme = useSelector(selectTheme).theme
 
     let {type, index} = route.params
 

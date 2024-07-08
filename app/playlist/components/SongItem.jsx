@@ -7,9 +7,10 @@ import Fonts from "../../../constants/Fonts"
 import Icons from "../../../constants/Icons"
 import {useSelector} from "react-redux";
 import {textPrimary} from "../../../constants/Colors";
+import {selectTheme} from "../../../store/themeSlice";
 
 const SongItem = ({img, song, artist, link, type}) => {
-    const theme = useSelector(state => state.appData.theme)
+    const theme = useSelector(selectTheme).theme
     const navigation = useNavigation()
 
     return (

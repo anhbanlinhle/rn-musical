@@ -6,9 +6,10 @@ import FeedArea from "./components/FeedArea"
 import {ratioH, ratioW} from "../../utils/converter"
 import {useSelector} from "react-redux"
 import {backgroundPrimary} from "../../constants/Colors"
+import {selectTheme} from "../../store/themeSlice";
 
 const Home = () => {
-    const theme = useSelector(state => state.appData.theme)
+    const theme = useSelector(selectTheme).theme
 
     return (
         <SafeAreaView style={styles.wrapper(theme)}>
