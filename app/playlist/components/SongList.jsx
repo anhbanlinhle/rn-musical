@@ -4,30 +4,60 @@ import {ratioH, ratioW} from "../../../utils/converter";
 import SongItem from "./SongItem";
 
 import SongData from "../../../data/songs.json"
+import Album1 from "../../../data/albums-1.json"
+import Album2 from "../../../data/albums-2.json"
 import {useSelector} from "react-redux";
 import {backgroundPrimary} from "../../../constants/Colors";
 
-const SongList = ({type}) => {
+const SongList = ({type, index}) => {
     const theme = useSelector(state => state.appData.theme)
+    let renderData = []
+    if (index === -1) {
+        const likedPlaylist = useSelector(state => state.likedData.likedPlaylists)
+        const allPlaylist = Album1.concat(Album2)
+        for (let i = 0; i < likedPlaylist.length; i++) {
+            renderData.push(allPlaylist.find(item => item.id === likedPlaylist[i]))
+        }
+    }
 
     return (
-        <View style={styles.container(theme)}>
-            <FlatList
-                data={SongData}
-                scrollEnabled={false}
-                renderItem={
-                    ({item}) => (
-                        <SongItem
-                            img={item.img}
-                            song={item.song}
-                            artist={item.artist}
-                            link={item.link}
-                            type={type}
-                        />
-                    )
-                }
-            />
-        </View>
+        index !== -1 ? (
+            <View style={styles.container(theme)}>
+                <FlatList
+                    data={SongData}
+                    scrollEnabled={false}
+                    renderItem={
+                        ({item}) => (
+                            <SongItem
+                                img={item.img}
+                                song={item.song}
+                                artist={item.artist}
+                                link={item.link}
+                                type={type}
+                            />
+                        )
+                    }
+                />
+            </View>
+        ) : (
+            <View style={styles.container(theme)}>
+                <FlatList
+                    data={renderData}
+                    scrollEnabled={false}
+                    renderItem={
+                        ({item}) => (
+                            <SongItem
+                                img={item.img}
+                                song={item.title}
+                                artist={item.description}
+                                link={''}
+                                type={type}
+                            />
+                        )
+                    }
+                />
+            </View>
+        )
     )
 }
 
