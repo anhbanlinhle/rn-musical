@@ -3,20 +3,29 @@ import {View, StyleSheet, TouchableOpacity} from 'react-native'
 import Icons from "../../../constants/Icons";
 import {ratioH, ratioW} from "../../../utils/converter";
 import {useNavigation} from "@react-navigation/native";
+import {useSelector} from "react-redux";
+import {textPrimary} from "../../../constants/Colors";
 
 const Header = ({color}) => {
     const navigation = useNavigation()
+    const theme = useSelector(state => state.appData.theme)
 
     return (
         <View style={styles.container(color)}>
             <TouchableOpacity onPress={() => navigation.goBack()}>
-                <Icons.Back style={styles.iconBack}/>
+                <Icons.Back
+                    style={styles.iconBack}
+                    fill={textPrimary(theme)}
+                />
             </TouchableOpacity>
             <TouchableOpacity
                 style={styles.iconDownload}
                 onPress={() => navigation.navigate("TestScreen")}
             >
-                <Icons.Download style={styles.iconBack}/>
+                <Icons.Download
+                    style={styles.iconBack}
+                    fill={textPrimary(theme)}
+                />
             </TouchableOpacity>
         </View>
     )

@@ -3,23 +3,26 @@ import {View, StyleSheet, SafeAreaView} from 'react-native'
 import Header from "./components/Header"
 import Content from "./components/Content"
 import Footer from "./components/Footer"
+import {useSelector} from "react-redux";
+import {blue, orange, purple} from "../../constants/Colors";
 
 
 const Song = ({route}) => {
     const {img, song, artist, link, type} = route.params
 
+    const theme = useSelector(state => state.appData.theme)
     const [color, setColor] = useState('#A6B9FF')
 
     useEffect(() => {
         switch (type) {
             case 1:
-                setColor('#A6B9FF')
+                setColor(blue(theme))
                 break
             case 2:
-                setColor('#FFC76F')
+                setColor(orange(theme))
                 break
             case 3:
-                setColor('#BBA5FF')
+                setColor(purple(theme))
                 break
             default:
                 console.log('No type')

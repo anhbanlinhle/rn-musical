@@ -16,9 +16,12 @@ import Animated, {
     withRepeat,
     withTiming,
 } from 'react-native-reanimated'
+import {useSelector} from "react-redux";
+import {backgroundPrimary, textPrimary, textSecondary} from "../../../constants/Colors";
 
 const Content = ({img, song, artist, link, color}) => {
     const playState = usePlaybackState()
+    const theme = useSelector(state => state.appData.theme)
     const { position, buffered, duration } = useProgress()
 
     const track = {
@@ -110,8 +113,8 @@ const Content = ({img, song, artist, link, color}) => {
     const renderSongName = () => {
         return (
             <View style={styles.songWrapper}>
-                <Text style={styles.songName}>{song}</Text>
-                <Text style={styles.songArtist}>{artist}</Text>
+                <Text style={styles.songName(theme)}>{song}</Text>
+                <Text style={styles.songArtist(theme)}>{artist}</Text>
             </View>
         )
     }
@@ -162,7 +165,7 @@ const Content = ({img, song, artist, link, color}) => {
     const renderDuration = () => {
         return (
             <View style={styles.duration}>
-                <Text style={styles.time}>{secondsToTime(position)}</Text>
+                <Text style={styles.time(theme)}>{secondsToTime(position)}</Text>
                 <Slider
                     value={position/track.duration * 100}
                     style={styles.slider}
@@ -178,13 +181,13 @@ const Content = ({img, song, artist, link, color}) => {
                         TrackPlayer.seekTo(value * track.duration / 100)
                     }}
                 />
-                <Text style={styles.time}>{secondsToTime(track.duration)}</Text>
+                <Text style={styles.time(theme)}>{secondsToTime(track.duration)}</Text>
             </View>
         )
     }
 
     return (
-        <View style={styles.container}>
+        <View style={styles.container(theme)}>
             {renderSongCover()}
             {renderSongName()}
             {renderInteractionButton()}
@@ -194,13 +197,13 @@ const Content = ({img, song, artist, link, color}) => {
 }
 
 const styles = StyleSheet.create({
-    container: {
+    container: (theme) => ({
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: backgroundPrimary(theme),
         borderTopLeftRadius: 24,
         borderTopRightRadius: 24,
         alignItems: 'center',
-    },
+    }),
     songCover: {
 
     },
@@ -234,17 +237,17 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         height: ratioH(79),
     },
-    songName: {
+    songName: (theme) => ({
         ...Fonts.semiBold,
-        color: '#191D21',
+        color: textPrimary(theme),
         fontSize: ratioH(24),
-    },
-    songArtist: {
+    }),
+    songArtist: (theme) => ({
         ...Fonts.regular,
-        color: '#656F77',
+        color: textSecondary(theme),
         fontSize: ratioH(14),
         marginTop: ratioH(4),
-    },
+    }),
     interactionButton: {
         marginTop: ratioH(24),
         flexDirection: 'row',
@@ -276,13 +279,13 @@ const styles = StyleSheet.create({
         marginHorizontal: ratioW(8),
         marginVertical: ratioH(16),
     },
-    time: {
+    time: (theme) => ({
         ...Fonts.regular,
-        color: '#656F77',
+        color: textSecondary(theme),
         fontSize: ratioH(12),
         marginHorizontal: ratioW(8),
         marginVertical: ratioH(16),
-    }
+    })
 })
 
 export default Content
