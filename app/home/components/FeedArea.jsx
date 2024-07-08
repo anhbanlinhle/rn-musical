@@ -14,10 +14,7 @@ import {selectLiked} from "../../../store/likedSlice";
 
 
 const FeedArea = () => {
-    // const theme = useSelector(state => state.appData.theme)
-    // const likedPlaylists = useSelector(state => state.likedData.likedPlaylists)
-    // const likedPlaylists = []
-    const theme = useSelector(selectTheme).theme
+    const theme = useSelector(selectTheme)
     const likedPlaylists = useSelector(selectLiked)
 
     const renderLikedSongs = () => {

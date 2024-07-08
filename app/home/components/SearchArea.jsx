@@ -8,7 +8,7 @@ import {searchArea, textPrimary} from "../../../constants/Colors";
 import {selectTheme} from "../../../store/themeSlice";
 
 const SearchArea = () => {
-    const theme = useSelector(selectTheme).theme
+    const theme = useSelector(selectTheme)
 
     return (
         <View style={styles.container(theme)}>

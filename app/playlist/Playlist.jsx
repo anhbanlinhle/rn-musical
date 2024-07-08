@@ -8,7 +8,7 @@ import {backgroundPrimary} from "../../constants/Colors";
 import {selectTheme} from "../../store/themeSlice";
 
 const Playlist = ({route}) => {
-    const theme = useSelector(selectTheme).theme
+    const theme = useSelector(selectTheme)
 
     let {type, index} = route.params
 

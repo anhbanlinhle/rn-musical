@@ -22,7 +22,7 @@ import {selectTheme} from "../../../store/themeSlice";
 
 const Content = ({img, song, artist, link, color}) => {
     const playState = usePlaybackState()
-    const theme = useSelector(selectTheme).theme
+    const theme = useSelector(selectTheme)
 
     const { position, buffered, duration } = useProgress()
 

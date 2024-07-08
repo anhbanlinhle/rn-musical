@@ -9,7 +9,7 @@ import {textPrimary} from "../../../constants/Colors";
 import {selectTheme} from "../../../store/themeSlice";
 
 const Banner = () => {
-    const theme = useSelector(selectTheme).theme
+    const theme = useSelector(selectTheme)
 
     return (
         <View style={styles.banner}>

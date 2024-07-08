@@ -9,7 +9,7 @@ import {selectTheme} from "../../../store/themeSlice";
 
 const Header = ({color}) => {
     const navigation = useNavigation()
-    const theme = useSelector(selectTheme).theme
+    const theme = useSelector(selectTheme)
 
     return (
         <View style={styles.container(color)}>

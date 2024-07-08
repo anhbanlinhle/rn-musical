@@ -11,7 +11,7 @@ import {selectTheme} from "../../store/themeSlice";
 const Song = ({route}) => {
     const {img, song, artist, link, type} = route.params
 
-    const theme = useSelector(selectTheme).theme
+    const theme = useSelector(selectTheme)
 
     const [color, setColor] = useState('#A6B9FF')
 

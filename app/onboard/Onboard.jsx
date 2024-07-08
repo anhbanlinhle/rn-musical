@@ -10,7 +10,7 @@ import {backgroundPrimary} from "../../constants/Colors";
 import {selectTheme} from "../../store/themeSlice";
 
 const Onboard = () => {
-    const theme = useSelector(selectTheme).theme
+    const theme = useSelector(selectTheme)
 
     return (
         <SafeAreaView style={styles.container(theme)}>

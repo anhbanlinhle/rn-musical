@@ -17,7 +17,7 @@ let User = {
 const HomeHeader = () => {
     const navigation = useNavigation()
 
-    const theme = useSelector(selectTheme).theme
+    const theme = useSelector(selectTheme)
     const dispatch = useDispatch()
 
     return (
@@ -36,7 +36,7 @@ const HomeHeader = () => {
                 </Text>
             </View>
             <TouchableOpacity
-                onPress={() => dispatch(changeTheme({theme}))}
+                onPress={() => dispatch(changeTheme(theme))}
             >
                 <Icons.Menu style={styles.dropDown} fill={textPrimary(theme)}/>
             </TouchableOpacity>

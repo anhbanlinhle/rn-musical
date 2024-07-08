@@ -12,7 +12,7 @@ import {selectTheme} from "../../../store/themeSlice";
 import {selectLiked} from "../../../store/likedSlice";
 
 const SongList = ({type, index}) => {
-    const theme = useSelector(selectTheme).theme
+    const theme = useSelector(selectTheme)
 
     let renderData = []
     if (index === -1) {

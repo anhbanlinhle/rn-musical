@@ -8,7 +8,7 @@ import {backgroundPrimary, backgroundSecondary} from "../../../constants/Colors"
 import {selectTheme} from "../../../store/themeSlice";
 
 const Background = () => {
-    const theme = useSelector(selectTheme).theme
+    const theme = useSelector(selectTheme)
 
     return (
         <ImageBackground

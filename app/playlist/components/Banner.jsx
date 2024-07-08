@@ -21,10 +21,8 @@ const Banner = ({type, index}) => {
     const navigation = useNavigation()
     const [imgSrc, setImgSrc] = useState(null)
     const [bannerColor, setColor] = useState('#A6B9FF')
-    // const theme = useSelector(state => state.appData.theme)
-    // const dispatch = useDispatch()
-    // const likedPlaylist = useSelector(state => state.likedData.likedPlaylists)
-    const theme = useSelector(selectTheme).theme
+
+    const theme = useSelector(selectTheme)
     const likedPlaylist = useSelector(selectLiked)
     const dispatch = useDispatch()
 

@@ -10,7 +10,7 @@ import {selectTheme} from "../../../store/themeSlice";
 
 const AlbumDetail = ({size, img, description, title, type, index}) => {
     const navigation = useNavigation()
-    const theme = useSelector(selectTheme).theme
+    const theme = useSelector(selectTheme)
 
     return (
         <TouchableOpacity

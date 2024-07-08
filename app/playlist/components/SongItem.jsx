@@ -10,7 +10,7 @@ import {textPrimary} from "../../../constants/Colors";
 import {selectTheme} from "../../../store/themeSlice";
 
 const SongItem = ({img, song, artist, link, type}) => {
-    const theme = useSelector(selectTheme).theme
+    const theme = useSelector(selectTheme)
     const navigation = useNavigation()
 
     return (

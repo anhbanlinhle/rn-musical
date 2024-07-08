@@ -9,7 +9,7 @@ import {backgroundPrimary} from "../../constants/Colors"
 import {selectTheme} from "../../store/themeSlice";
 
 const Home = () => {
-    const theme = useSelector(selectTheme).theme
+    const theme = useSelector(selectTheme)
 
     return (
         <SafeAreaView style={styles.wrapper(theme)}>
