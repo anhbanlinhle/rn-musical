@@ -17,4 +17,6 @@ export const likedSlice = createSlice({
 
 export const {addLikedPlaylist, removeLikedPlaylist} = likedSlice.actions
 
+export const selectLiked = (state) => state.likedData.likedPlaylists
+
 export default likedSlice.reducer
