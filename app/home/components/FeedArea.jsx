@@ -10,13 +10,15 @@ import {backgroundPrimary, textPrimary} from "../../../constants/Colors";
 import Images from "../../../constants/Images";
 import {selectTheme} from "../../../store/themeSlice";
 import {useSelector} from "react-redux";
+import {selectLiked} from "../../../store/likedSlice";
 
 
 const FeedArea = () => {
     // const theme = useSelector(state => state.appData.theme)
     // const likedPlaylists = useSelector(state => state.likedData.likedPlaylists)
-    const likedPlaylists = []
+    // const likedPlaylists = []
     const theme = useSelector(selectTheme).theme
+    const likedPlaylists = useSelector(selectLiked)
 
     const renderLikedSongs = () => {
         return (

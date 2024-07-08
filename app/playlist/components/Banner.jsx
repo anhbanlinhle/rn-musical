@@ -15,6 +15,7 @@ import Animated, {
 import {useDispatch, useSelector} from "react-redux";
 import {blue, orange, purple, textPrimary, textSecondary} from "../../../constants/Colors";
 import {selectTheme} from "../../../store/themeSlice";
+import {addLikedPlaylist, removeLikedPlaylist, selectLiked} from "../../../store/likedSlice";
 
 const Banner = ({type, index}) => {
     const navigation = useNavigation()
@@ -24,6 +25,8 @@ const Banner = ({type, index}) => {
     // const dispatch = useDispatch()
     // const likedPlaylist = useSelector(state => state.likedData.likedPlaylists)
     const theme = useSelector(selectTheme).theme
+    const likedPlaylist = useSelector(selectLiked)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         switch (type) {
@@ -44,8 +47,8 @@ const Banner = ({type, index}) => {
         }
     }, [])
 
-    // const [isLoved, setLoved] = useState(likedPlaylist.includes(index))
-    const [isLoved, setLoved] = useState(false)
+    const [isLoved, setLoved] = useState(likedPlaylist.includes(index))
+    // const [isLoved, setLoved] = useState(false)
     const sv = useSharedValue(1)
 
     const scaleLoveIcon = useAnimatedStyle(() => ({
@@ -84,6 +87,7 @@ const Banner = ({type, index}) => {
                         handleLove()
                         setLoved(!isLoved)
                         // isLoved ? dispatch(removeSongAction(index)) : dispatch(addSongAction(index))
+                        isLoved ? dispatch(removeLikedPlaylist(index)) : dispatch(addLikedPlaylist(index))
                     }}>
                         <Icons.Heart
                             style={styles().iconLove}

@@ -9,6 +9,7 @@ import Album2 from "../../../data/albums-2.json"
 import {useSelector} from "react-redux";
 import {backgroundPrimary} from "../../../constants/Colors";
 import {selectTheme} from "../../../store/themeSlice";
+import {selectLiked} from "../../../store/likedSlice";
 
 const SongList = ({type, index}) => {
     const theme = useSelector(selectTheme).theme
@@ -16,7 +17,7 @@ const SongList = ({type, index}) => {
     let renderData = []
     if (index === -1) {
         // const likedPlaylist = useSelector(state => state.likedData.likedPlaylists)
-        const likedPlaylist = []
+        const likedPlaylist = useSelector(selectLiked)
         const allPlaylist = Album1.concat(Album2)
         for (let i = 0; i < likedPlaylist.length; i++) {
             renderData.push(allPlaylist.find(item => item.id === likedPlaylist[i]))
