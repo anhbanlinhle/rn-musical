@@ -7,7 +7,8 @@ export const likedSlice = createSlice({
     },
     reducers: {
         addLikedPlaylist: (state, action) => {
-            state.likedPlaylists.push(action.payload)
+            if (action.payload !== -1)
+                state.likedPlaylists.push(action.payload)
         },
         removeLikedPlaylist: (state, action) => {
             state.likedPlaylists = state.likedPlaylists.filter(item => item !== action.payload)
