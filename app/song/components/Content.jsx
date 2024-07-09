@@ -85,43 +85,33 @@ const Content = ({img, song, artist, link, color}) => {
         }
     }, [playState.state]);
 
-    // const renderSongCover = () => {
-    //     return (
-    //         <View style={styles.imageWrapper}>
-    //             <Animated.View
-    //                 style={[
-    //                     styles.progressWrapper(color),
-    //                     spin1
-    //                 ]}
-    //             >
-    //                 <Image
-    //                     source={Images.Progress}
-    //                     style={styles.progress(color)}
-    //                 />
-    //             </Animated.View>
-    //             <Animated.View
-    //                 style={[
-    //                     styles.artworkWrapper,
-    //                     spin2
-    //                 ]}
-    //             >
-    //                 <Image
-    //                     source={{uri: img}}
-    //                     style={[styles.artwork]}
-    //                 />
-    //             </Animated.View>
-    //         </View>
-    //     )
-    // }
+    const renderSongArtwork = () => {
+        return (
+            <SongArtwork
+                mainSize={260}
+                spinningSize={256}
+                imageSize={199}
+                color={color}
+                img={img}
+                sv={sv}
+                style={styles.songArtwork}
+            />
+        )
+    }
 
-    // const renderSongName = () => {
-    //     return (
-    //         <View style={styles.songWrapper}>
-    //             <Text style={styles.songName(theme)}>{song}</Text>
-    //             <Text style={styles.songArtist(theme)}>{artist}</Text>
-    //         </View>
-    //     )
-    // }
+    const renderSongInfo = () => {
+        return (
+            <SongInfo
+                height={79}
+                theme={theme}
+                song={song}
+                artist={artist}
+                mainFontSize={24}
+                subFontSize={14}
+                style={styles.songInfo}
+            />
+        )
+    }
 
     const renderInteractionButton = () => {
         return (
@@ -192,25 +182,8 @@ const Content = ({img, song, artist, link, color}) => {
 
     return (
         <View style={styles.container(theme)}>
-            {/*{renderSongCover()}*/}
-            <SongArtwork
-                mainSize={260}
-                spinningSize={256}
-                imageSize={199}
-                color={color}
-                img={img}
-                sv={sv}
-                style={styles.songArtwork}
-            />
-            <SongInfo
-                height={79}
-                theme={theme}
-                song={song}
-                artist={artist}
-                mainFontSize={24}
-                subFontSize={14}
-            />
-            {/*{renderSongName()}*/}
+            {renderSongArtwork()}
+            {renderSongInfo()}
             {renderInteractionButton()}
             {renderDuration()}
         </View>
@@ -228,47 +201,9 @@ const styles = StyleSheet.create({
     songArtwork: {
         marginTop: ratioH(24),
     },
-    // imageWrapper: {
-    //     marginTop: ratioH(24),
-    //     justifyContent: 'center',
-    //     alignItems: 'center',
-    //     width: ratioW(260),
-    //     height: ratioW(260),
-    // },
-    // progressWrapper: (color) => ({
-    //     position: 'absolute',
-    // }),
-    // progress: (color) => ({
-    //     width: ratioW(256),
-    //     height: ratioW(256),
-    //     tintColor: color,
-    // }),
-    // artworkWrapper: {
-    //     position: 'absolute'
-    // },
-    // artwork: {
-    //     width: ratioW(199),
-    //     height: ratioW(199),
-    //     borderRadius: ratioW(199),
-    // },
-    // songWrapper: {
-    //     marginTop: ratioH(24),
-    //     alignItems: 'center',
-    //     justifyContent: 'center',
-    //     height: ratioH(79),
-    //     backgroundColor: 'red',
-    // },
-    // songName: (theme) => ({
-    //     ...Fonts.semiBold,
-    //     color: textPrimary(theme),
-    //     fontSize: ratioH(24),
-    // }),
-    // songArtist: (theme) => ({
-    //     ...Fonts.regular,
-    //     color: textSecondary(theme),
-    //     fontSize: ratioH(14),
-    //     marginTop: ratioH(4),
-    // }),
+    songInfo: {
+        marginTop: ratioH(24),
+    },
     interactionButton: {
         marginTop: ratioH(24),
         flexDirection: 'row',

@@ -4,9 +4,12 @@ import {ratioH} from "../../utils/converter";
 import Fonts from "../../constants/Fonts";
 import {textPrimary, textSecondary} from "../../constants/Colors";
 
-const SongInfo = ({height, theme, song, artist, mainFontSize, subFontSize}) => {
+const SongInfo = ({height, theme, song, artist, mainFontSize, subFontSize, style}) => {
     return (
-        <View style={styles.songWrapper(height)}>
+        <View style={[
+            styles.songWrapper(height),
+            style
+        ]}>
             <Text style={styles.songName(theme, mainFontSize)}>{song}</Text>
             <Text style={styles.songArtist(theme, subFontSize)}>{artist}</Text>
         </View>
@@ -15,7 +18,6 @@ const SongInfo = ({height, theme, song, artist, mainFontSize, subFontSize}) => {
 
 const styles = StyleSheet.create({
     songWrapper: (height) => ({
-        marginTop: ratioH(24),
         alignItems: 'center',
         justifyContent: 'center',
         height: ratioH(height),
