@@ -5,19 +5,18 @@ import TrackPlayer, {State, usePlaybackState} from "react-native-track-player";
 import {cancelAnimation, Easing, useSharedValue, withRepeat, withTiming} from "react-native-reanimated";
 import SongArtwork from "./SongArtwork";
 import SongInfo from "./SongInfo";
-import {backgroundSecondary, shadowColor} from "../../constants/Colors";
 import {useNavigation} from "@react-navigation/native";
 import {useDispatch, useSelector} from "react-redux";
 import {removePlayingSong, selectArtist, selectImg, selectLink, selectSong, selectType} from "../../store/songSlice";
 import {selectTheme} from "../../store/themeSlice";
 import Icons from "../../constants/Icons";
+import {backgroundPrimary, backgroundSecondary, searchArea} from "../../constants/Colors";
 
 const MusicBar = () => {
     const navigation = useNavigation()
     const playState = usePlaybackState()
     const spinDuration = 4000
     const easing = Easing.linear
-    const color = 'black'
 
     const theme = useSelector(selectTheme)
     const img = useSelector(selectImg)
@@ -58,7 +57,7 @@ const MusicBar = () => {
                         mainSize={ratioW(48)}
                         spinningSize={ratioW(44)}
                         imageSize={ratioW(36)}
-                        color={color}
+                        color={searchArea(theme)}
                         img={img}
                         sv={sv}
                         style={styles.songArtwork}
@@ -91,7 +90,8 @@ const MusicBar = () => {
                         dispatch(removePlayingSong())
                     }}
                 >
-                    <Icons.Close/>
+                    <Icons.Close
+                    stroke={backgroundPrimary(theme === 'dark' ? 'light' : 'dark')}/>
                 </TouchableOpacity>
             </View>
         ) : null
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     container: (theme) => ({
         flex: 1,
         flexDirection: 'row',
-        backgroundColor: backgroundSecondary(theme),
+        backgroundColor: backgroundPrimary(theme),
         width: ratioW(375 - 16),
         height: ratioW(64),
         position: 'absolute',
@@ -110,9 +110,12 @@ const styles = StyleSheet.create({
         left: ratioW(8),
         borderRadius: 64,
         alignItems: 'center',
-        borderColor: 'black',
+        borderColor: backgroundPrimary(theme === 'dark' ? 'light' : 'dark'),
         borderWidth: ratioH(4),
     }),
+    songArtwork: {
+      marginLeft: ratioW(8),
+    },
     songInfo: {
         alignItems: 'left',
         marginLeft: ratioW(8),
