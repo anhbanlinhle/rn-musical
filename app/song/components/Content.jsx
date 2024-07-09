@@ -53,8 +53,8 @@ const Content = ({color, id}) => {
         catch (e) {
             console.log(e)
         }
-        await TrackPlayer.play()
         await TrackPlayer.skip(id, 0)
+        await TrackPlayer.play()
     }
 
     useEffect(() => {
@@ -159,13 +159,15 @@ const Content = ({color, id}) => {
         )
     }
     const renderSongDuration = () => {
+        const songPosition = position || 0
+        const songDuration = duration || 1
         return (
             <SongDuration
-                currentPosition={position || 0}
-                songDuration={duration || 0}
+                currentPosition={songPosition}
+                songDuration={songDuration}
                 theme={theme}
                 onSlide={value => {
-                    TrackPlayer.seekTo(value * duration / 100)
+                    TrackPlayer.seekTo(value * songDuration / 100)
                 }}
                 style={styles.songDuration}
             />
@@ -177,7 +179,7 @@ const Content = ({color, id}) => {
             {renderSongArtwork()}
             {renderSongInfo()}
             {renderSongInteractionButtons()}
-            {/*{renderSongDuration()}*/}
+            {renderSongDuration()}
         </View>
     )
 }
