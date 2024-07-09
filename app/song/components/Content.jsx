@@ -1,10 +1,7 @@
 import React, {useEffect} from 'react'
 import {View, StyleSheet, Image, Text, TouchableOpacity} from 'react-native'
 import Icons from "../../../constants/Icons"
-import Images from "../../../constants/Images"
 import {ratioH, ratioW, secondsToTime} from "../../../utils/converter"
-import Fonts from "../../../constants/Fonts"
-import { Slider } from '@react-native-assets/slider'
 
 import TrackPlayer, {State, usePlaybackState, useProgress} from 'react-native-track-player'
 
@@ -17,10 +14,11 @@ import Animated, {
     withTiming,
 } from 'react-native-reanimated'
 import {useSelector} from "react-redux";
-import {backgroundPrimary, textPrimary, textSecondary} from "../../../constants/Colors";
+import {backgroundPrimary} from "../../../constants/Colors";
 import {selectTheme} from "../../../store/themeSlice";
 import SongArtwork from "../../components/SongArtwork";
 import SongInfo from "../../components/SongInfo";
+import SongDuration from "./SongDuration";
 
 const Content = ({img, song, artist, link, color}) => {
     const playState = usePlaybackState()
@@ -156,27 +154,17 @@ const Content = ({img, song, artist, link, color}) => {
         )
     }
 
-    const renderDuration = () => {
+    const renderSongDuration = () => {
         return (
-            <View style={styles.duration}>
-                <Text style={styles.time(theme)}>{secondsToTime(position)}</Text>
-                <Slider
-                    value={position/track.duration * 100}
-                    style={styles.slider}
-                    minimumValue={0}
-                    maximumValue={100}
-                    step={0}
-                    minimumTrackTintColor="#393939"
-                    maximumTrackTintColor="#CDD9E3"
-                    thumbTintColor="#393939"
-                    thumbSize={ratioW(16)}
-                    trackHeight={ratioH(6)}
-                    onValueChange={value => {
-                        TrackPlayer.seekTo(value * track.duration / 100)
-                    }}
-                />
-                <Text style={styles.time(theme)}>{secondsToTime(track.duration)}</Text>
-            </View>
+            <SongDuration
+                currentPosition={position}
+                songDuration={track.duration}
+                theme={theme}
+                onSlide={value => {
+                    TrackPlayer.seekTo(value * track.duration / 100)
+                }}
+                style={styles.songDuration}
+            />
         )
     }
 
@@ -185,7 +173,7 @@ const Content = ({img, song, artist, link, color}) => {
             {renderSongArtwork()}
             {renderSongInfo()}
             {renderInteractionButton()}
-            {renderDuration()}
+            {renderSongDuration()}
         </View>
     )
 }
@@ -204,6 +192,9 @@ const styles = StyleSheet.create({
     songInfo: {
         marginTop: ratioH(24),
     },
+    songDuration: {
+        marginTop: ratioH(24),
+    },
     interactionButton: {
         marginTop: ratioH(24),
         flexDirection: 'row',
@@ -220,27 +211,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginHorizontal: ratioW(24),
-    }),
-    duration: {
-        marginTop: ratioH(24),
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: ratioW(375),
-        height: ratioH(48),
-    },
-    slider: {
-        width: ratioW(207),
-        height: ratioH(16),
-        marginHorizontal: ratioW(8),
-        marginVertical: ratioH(16),
-    },
-    time: (theme) => ({
-        ...Fonts.regular,
-        color: textSecondary(theme),
-        fontSize: ratioH(12),
-        marginHorizontal: ratioW(8),
-        marginVertical: ratioH(16),
     })
 })
 

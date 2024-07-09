@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         height: ratioH(height),
-        backgroundColor: 'red',
     }),
     songName: (theme, mainFontSize) => ({
         ...Fonts.semiBold,
