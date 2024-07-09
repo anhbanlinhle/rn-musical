@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import {View, StyleSheet, TouchableOpacity} from 'react-native'
 import {ratioH, ratioW} from "../../../utils/converter";
 import Icons from "../../../constants/Icons";
-import Images from "../../../constants/Images";
 
 const Footer = ({color}) => {
 

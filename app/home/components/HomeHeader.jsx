@@ -7,7 +7,7 @@ import Images from "../../../constants/Images"
 import {useNavigation} from "@react-navigation/native";
 import {useDispatch, useSelector} from "react-redux";
 import {textPrimary} from "../../../constants/Colors";
-import {changeThemeAction} from "../../../store/themeAction";
+import {changeTheme, selectTheme} from "../../../store/themeSlice";
 
 let User = {
     name: "Linh",
@@ -17,7 +17,7 @@ let User = {
 const HomeHeader = () => {
     const navigation = useNavigation()
 
-    const theme = useSelector(state => state.appData.theme)
+    const theme = useSelector(selectTheme)
     const dispatch = useDispatch()
 
     return (
@@ -36,7 +36,7 @@ const HomeHeader = () => {
                 </Text>
             </View>
             <TouchableOpacity
-                onPress={() => dispatch(changeThemeAction(theme))}
+                onPress={() => dispatch(changeTheme(theme))}
             >
                 <Icons.Menu style={styles.dropDown} fill={textPrimary(theme)}/>
             </TouchableOpacity>

@@ -9,7 +9,7 @@ import Song from "./song/Song"
 import TestScreen from "./test/TestScreen"
 import TestScreen2 from "./test/TestScreen2"
 import {Provider} from "react-redux"
-import {store} from "../store/store"
+import store from "../store/store";
 
 const Stack = createNativeStackNavigator()
 

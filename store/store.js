@@ -1,10 +1,12 @@
-import { combineReducers, createStore } from "redux"
-import themeReducer from "./themeReducer"
-import likedReducer from "./likedReducer";
+import {configureStore} from "@reduxjs/toolkit"
+import themeReducer from "./themeSlice"
+import likedReducer from "./likedSlice"
+import songReducer from "./songSlice"
 
-const rootReducer = combineReducers({
-    appData: themeReducer,
-    likedData: likedReducer
+export default configureStore({
+    reducer: {
+        themeData: themeReducer,
+        likedData: likedReducer,
+        songData: songReducer
+    },
 })
-
-export const store = createStore(rootReducer)

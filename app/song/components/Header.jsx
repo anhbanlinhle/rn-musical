@@ -5,10 +5,11 @@ import {ratioH, ratioW} from "../../../utils/converter";
 import {useNavigation} from "@react-navigation/native";
 import {useSelector} from "react-redux";
 import {textPrimary} from "../../../constants/Colors";
+import {selectTheme} from "../../../store/themeSlice";
 
 const Header = ({color}) => {
     const navigation = useNavigation()
-    const theme = useSelector(state => state.appData.theme)
+    const theme = useSelector(selectTheme)
 
     return (
         <View style={styles.container(color)}>

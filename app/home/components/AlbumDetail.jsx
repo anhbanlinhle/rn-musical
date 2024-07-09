@@ -6,10 +6,11 @@ import Fonts from "../../../constants/Fonts"
 import { useNavigation } from '@react-navigation/native'
 import {useSelector} from "react-redux";
 import {backgroundPrimary, backgroundSecondary, shadowColor, textPrimary} from "../../../constants/Colors";
+import {selectTheme} from "../../../store/themeSlice";
 
 const AlbumDetail = ({size, img, description, title, type, index}) => {
     const navigation = useNavigation()
-    const theme = useSelector(state => state.appData.theme)
+    const theme = useSelector(selectTheme)
 
     return (
         <TouchableOpacity

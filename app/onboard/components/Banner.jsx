@@ -6,9 +6,10 @@ import Fonts from "../../../constants/Fonts"
 import Images from "../../../constants/Images"
 import {useSelector} from "react-redux";
 import {textPrimary} from "../../../constants/Colors";
+import {selectTheme} from "../../../store/themeSlice";
 
 const Banner = () => {
-    const theme = useSelector(state => state.appData.theme)
+    const theme = useSelector(selectTheme)
 
     return (
         <View style={styles.banner}>

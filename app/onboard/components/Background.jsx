@@ -5,9 +5,10 @@ import {ratioW} from "../../../utils/converter"
 import Images from "../../../constants/Images"
 import {useSelector} from "react-redux";
 import {backgroundPrimary, backgroundSecondary} from "../../../constants/Colors";
+import {selectTheme} from "../../../store/themeSlice";
 
 const Background = () => {
-    const theme = useSelector(state => state.appData.theme)
+    const theme = useSelector(selectTheme)
 
     return (
         <ImageBackground

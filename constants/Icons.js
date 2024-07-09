@@ -15,6 +15,7 @@ import HeartFilled from '../assets/icons/HeartFilled.svg'
 import Playlist from '../assets/icons/Playlist.svg'
 import Shuffle from '../assets/icons/Shuffle.svg'
 import Progress from '../assets/icons/Progress.svg'
+import Close from '../assets/icons/Close.svg'
 
 const Icons = {
     NextPage,
@@ -33,7 +34,8 @@ const Icons = {
     HeartFilled,
     Playlist,
     Shuffle,
-    Progress
+    Progress,
+    Close
 }
 
 export default Icons
