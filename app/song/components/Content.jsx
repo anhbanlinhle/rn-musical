@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import {View, StyleSheet} from 'react-native'
 import {ratioH} from "../../../utils/converter"
 
-import TrackPlayer, {State, usePlaybackState, useProgress} from 'react-native-track-player'
+import TrackPlayer, {State, usePlaybackState, useProgress, RepeatMode} from 'react-native-track-player'
 
 import Animated, {
     cancelAnimation,
@@ -11,36 +11,50 @@ import Animated, {
     withRepeat,
     withTiming,
 } from 'react-native-reanimated'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {backgroundPrimary} from "../../../constants/Colors";
 import {selectTheme} from "../../../store/themeSlice";
 import SongArtwork from "../../components/SongArtwork";
 import SongInfo from "../../components/SongInfo";
 import SongDuration from "./SongDuration";
 import SongInteractionButtons from "../../components/SongInteractionButtons";
+import allSongs from "../../../data/songs.json"
+import {addPlayingSong, selectArtist, selectImg, selectLink, selectSong, selectType} from "../../../store/songSlice";
 
-const Content = ({img, song, artist, link, color}) => {
+const Content = ({color, id}) => {
     const playState = usePlaybackState()
     const theme = useSelector(selectTheme)
+    const dispatch = useDispatch()
+    const img = useSelector(selectImg)
+    const song = useSelector(selectSong)
+    const artist = useSelector(selectArtist)
+    const link = useSelector(selectLink)
+    const type = useSelector(selectType)
 
     const { position, buffered, duration } = useProgress()
 
-    const track = {
-        url: link,
-        title: song,
-        artist: artist,
-        duration: 127
+    const allTrack = []
+    for (let i = 0; i < allSongs.length; i++) {
+        allTrack.push({
+            url: allSongs[i].link,
+            title: allSongs[i].song,
+            artist: allSongs[i].artist,
+            duration: allSongs[i].duration,
+            artwork: allSongs[i].img
+        })
     }
 
     const setup = async () => {
         try {
             await TrackPlayer.setupPlayer()
-            await TrackPlayer.add(track)
+            await TrackPlayer.add(allTrack)
+            await TrackPlayer.setRepeatMode(RepeatMode.Queue)
         }
         catch (e) {
             console.log(e)
         }
-        TrackPlayer.play()
+        await TrackPlayer.play()
+        await TrackPlayer.skip(id, 0)
     }
 
     useEffect(() => {
@@ -109,11 +123,36 @@ const Content = ({img, song, artist, link, color}) => {
             <SongInteractionButtons
                 buttonColor={color}
                 isPlaying={playState.state === State.Playing}
-                clickPrevious={() => TrackPlayer.seekTo(0)}
-                clickPlay={() => changePlayState(playState)}
+                clickPrevious={() => {
+                    TrackPlayer.skipToPrevious(0)
+                    TrackPlayer.getActiveTrackIndex().then(index => {
+
+                        dispatch(addPlayingSong({
+                            img: allSongs[index].img,
+                            song: allSongs[index].song,
+                            artist: allSongs[index].artist,
+                            link: allSongs[index].link,
+                            type: type,
+                            id: allSongs[index].id
+                        }))
+                    })
+                }}
+                clickPlay={() => {
+                    changePlayState(playState)
+                }}
                 clickNext={() => {
-                    TrackPlayer.seekTo(track.duration)
-                    TrackPlayer.pause()
+                    TrackPlayer.skipToNext(0)
+                    TrackPlayer.getActiveTrackIndex().then(index => {
+
+                        dispatch(addPlayingSong({
+                            img: allSongs[index].img,
+                            song: allSongs[index].song,
+                            artist: allSongs[index].artist,
+                            link: allSongs[index].link,
+                            type: type,
+                            id: allSongs[index].id
+                        }))
+                    })
                 }}
                 style={styles.songInteractionButtons}
             />
@@ -122,11 +161,11 @@ const Content = ({img, song, artist, link, color}) => {
     const renderSongDuration = () => {
         return (
             <SongDuration
-                currentPosition={position}
-                songDuration={track.duration}
+                currentPosition={position || 0}
+                songDuration={duration || 0}
                 theme={theme}
                 onSlide={value => {
-                    TrackPlayer.seekTo(value * track.duration / 100)
+                    TrackPlayer.seekTo(value * duration / 100)
                 }}
                 style={styles.songDuration}
             />
@@ -138,7 +177,7 @@ const Content = ({img, song, artist, link, color}) => {
             {renderSongArtwork()}
             {renderSongInfo()}
             {renderSongInteractionButtons()}
-            {renderSongDuration()}
+            {/*{renderSongDuration()}*/}
         </View>
     )
 }
