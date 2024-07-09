@@ -1,14 +1,12 @@
 import React, {useEffect} from 'react'
-import {View, StyleSheet, Image, Text, TouchableOpacity} from 'react-native'
-import Icons from "../../../constants/Icons"
-import {ratioH, ratioW, secondsToTime} from "../../../utils/converter"
+import {View, StyleSheet} from 'react-native'
+import {ratioH} from "../../../utils/converter"
 
 import TrackPlayer, {State, usePlaybackState, useProgress} from 'react-native-track-player'
 
 import Animated, {
     cancelAnimation,
     Easing,
-    useAnimatedStyle,
     useSharedValue,
     withRepeat,
     withTiming,
@@ -19,6 +17,7 @@ import {selectTheme} from "../../../store/themeSlice";
 import SongArtwork from "../../components/SongArtwork";
 import SongInfo from "../../components/SongInfo";
 import SongDuration from "./SongDuration";
+import SongInteractionButtons from "../../components/SongInteractionButtons";
 
 const Content = ({img, song, artist, link, color}) => {
     const playState = usePlaybackState()
@@ -66,13 +65,6 @@ const Content = ({img, song, artist, link, color}) => {
 
     const sv = useSharedValue(0)
 
-    const spin1 = useAnimatedStyle(() => ({
-        transform: [{ rotate: `${sv.value * 360}deg` }],
-    }))
-    const spin2 = useAnimatedStyle(() => ({
-        transform: [{ rotate: `${sv.value * -360}deg` }],
-    }))
-
     useEffect(() => {
         if (playState.state === State.Playing) {
             sv.value = withRepeat(withTiming(1, { duration: spinDuration, easing }), -1);
@@ -111,49 +103,21 @@ const Content = ({img, song, artist, link, color}) => {
         )
     }
 
-    const renderInteractionButton = () => {
+    const renderSongInteractionButtons = () => {
         return (
-            <View style={styles.interactionButton}>
-                <TouchableOpacity
-                    onPress={() => TrackPlayer.seekTo(0)}
-                    hitSlop={
-                        {
-                            top: ratioH(40),
-                            left: ratioH(80),
-                            bottom: ratioH(40),
-                            right: 0
-                        }
-                    }
-                >
-                    <Icons.Previous/>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.playButton(color)}
-                    onPress={() => changePlayState(playState)}
-                >
-                    {playState.state === State.Playing ? <Icons.Pause/> : <Icons.Play/>}
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => {
-                        TrackPlayer.seekTo(track.duration)
-                        TrackPlayer.pause()
-                    }
-                }
-                    hitSlop={
-                        {
-                            top: ratioH(40),
-                            left: 0,
-                            bottom: ratioH(40),
-                            right: ratioH(80)
-                        }
-                    }
-                >
-                    <Icons.Next/>
-                </TouchableOpacity>
-            </View>
+            <SongInteractionButtons
+                buttonColor={color}
+                isPlaying={playState.state === State.Playing}
+                clickPrevious={() => TrackPlayer.seekTo(0)}
+                clickPlay={() => changePlayState(playState)}
+                clickNext={() => {
+                    TrackPlayer.seekTo(track.duration)
+                    TrackPlayer.pause()
+                }}
+                style={styles.songInteractionButtons}
+            />
         )
     }
-
     const renderSongDuration = () => {
         return (
             <SongDuration
@@ -172,7 +136,7 @@ const Content = ({img, song, artist, link, color}) => {
         <View style={styles.container(theme)}>
             {renderSongArtwork()}
             {renderSongInfo()}
-            {renderInteractionButton()}
+            {renderSongInteractionButtons()}
             {renderSongDuration()}
         </View>
     )
@@ -195,23 +159,9 @@ const styles = StyleSheet.create({
     songDuration: {
         marginTop: ratioH(24),
     },
-    interactionButton: {
+    songInteractionButtons: {
         marginTop: ratioH(24),
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: ratioW(375),
-        height: ratioH(80),
-    },
-    playButton: (color) => ({
-        width: ratioW(80),
-        height: ratioW(80),
-        borderRadius: ratioW(80),
-        backgroundColor: color,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginHorizontal: ratioW(24),
-    })
+    }
 })
 
 export default Content
