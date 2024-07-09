@@ -4,7 +4,7 @@ import Animated, {useAnimatedStyle} from "react-native-reanimated"
 import Images from "../../constants/Images"
 import {ratioH, ratioW} from "../../utils/converter"
 
-const SongArtwork = ({color, img, sv}) => {
+const SongArtwork = ({mainSize, spinningSize, imageSize, color, img, sv, style}) => {
     const spin1 = useAnimatedStyle(() => ({
         transform: [{ rotate: `${sv.value * 360}deg` }],
     }))
@@ -12,7 +12,10 @@ const SongArtwork = ({color, img, sv}) => {
         transform: [{ rotate: `${sv.value * -360}deg` }],
     }))
     return (
-        <View style={styles.imageWrapper}>
+        <View style={[
+            styles.imageWrapper(mainSize),
+            style
+        ]}>
             <Animated.View
                 style={[
                     styles.progressWrapper,
@@ -21,7 +24,7 @@ const SongArtwork = ({color, img, sv}) => {
             >
                 <Image
                     source={Images.Progress}
-                    style={styles.progress(color)}
+                    style={styles.progress(color, spinningSize)}
                 />
             </Animated.View>
             <Animated.View
@@ -32,7 +35,7 @@ const SongArtwork = ({color, img, sv}) => {
             >
                 <Image
                     source={{uri: img}}
-                    style={styles.artwork}
+                    style={styles.artwork(imageSize)}
                 />
             </Animated.View>
         </View>
@@ -40,29 +43,28 @@ const SongArtwork = ({color, img, sv}) => {
 }
 
 const styles = StyleSheet.create({
-    imageWrapper: {
-        marginTop: ratioH(24),
+    imageWrapper: (mainSize) => ({
         justifyContent: 'center',
         alignItems: 'center',
-        width: ratioW(260),
-        height: ratioW(260),
-    },
+        width: ratioW(mainSize),
+        height: ratioW(mainSize),
+    }),
     progressWrapper: {
         position: 'absolute',
     },
-    progress: (color) => ({
-        width: ratioW(256),
-        height: ratioW(256),
+    progress: (color, spinningSize) => ({
+        width: ratioW(spinningSize),
+        height: ratioW(spinningSize),
         tintColor: color,
     }),
     artworkWrapper: {
         position: 'absolute'
     },
-    artwork: {
-        width: ratioW(199),
-        height: ratioW(199),
-        borderRadius: ratioW(199),
-    },
+    artwork: (imageSize) => ({
+        width: ratioW(imageSize),
+        height: ratioW(imageSize),
+        borderRadius: ratioW(imageSize),
+    }),
 })
 
 export default SongArtwork
