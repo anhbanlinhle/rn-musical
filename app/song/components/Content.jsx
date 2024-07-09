@@ -19,6 +19,7 @@ import Animated, {
 import {useSelector} from "react-redux";
 import {backgroundPrimary, textPrimary, textSecondary} from "../../../constants/Colors";
 import {selectTheme} from "../../../store/themeSlice";
+import SongArtwork from "../../components/SongArtwork";
 
 const Content = ({img, song, artist, link, color}) => {
     const playState = usePlaybackState()
@@ -83,34 +84,34 @@ const Content = ({img, song, artist, link, color}) => {
         }
     }, [playState.state]);
 
-    const renderSongCover = () => {
-        return (
-            <View style={styles.imageWrapper}>
-                <Animated.View
-                    style={[
-                        styles.progressWrapper(color),
-                        spin1
-                    ]}
-                >
-                    <Image
-                        source={Images.Progress}
-                        style={styles.progress(color)}
-                    />
-                </Animated.View>
-                <Animated.View
-                    style={[
-                        styles.artworkWrapper,
-                        spin2
-                    ]}
-                >
-                    <Image
-                        source={{uri: img}}
-                        style={[styles.artwork]}
-                    />
-                </Animated.View>
-                </View>
-        )
-    }
+    // const renderSongCover = () => {
+    //     return (
+    //         <View style={styles.imageWrapper}>
+    //             <Animated.View
+    //                 style={[
+    //                     styles.progressWrapper(color),
+    //                     spin1
+    //                 ]}
+    //             >
+    //                 <Image
+    //                     source={Images.Progress}
+    //                     style={styles.progress(color)}
+    //                 />
+    //             </Animated.View>
+    //             <Animated.View
+    //                 style={[
+    //                     styles.artworkWrapper,
+    //                     spin2
+    //                 ]}
+    //             >
+    //                 <Image
+    //                     source={{uri: img}}
+    //                     style={[styles.artwork]}
+    //                 />
+    //             </Animated.View>
+    //         </View>
+    //     )
+    // }
 
     const renderSongName = () => {
         return (
@@ -190,7 +191,8 @@ const Content = ({img, song, artist, link, color}) => {
 
     return (
         <View style={styles.container(theme)}>
-            {renderSongCover()}
+            {/*{renderSongCover()}*/}
+            <SongArtwork color={color} img={img} sv={sv}/>
             {renderSongName()}
             {renderInteractionButton()}
             {renderDuration()}
