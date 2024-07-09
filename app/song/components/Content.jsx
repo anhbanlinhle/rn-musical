@@ -40,6 +40,7 @@ const Content = ({img, song, artist, link, color}) => {
         catch (e) {
             console.log(e)
         }
+        TrackPlayer.play()
     }
 
     useEffect(() => {

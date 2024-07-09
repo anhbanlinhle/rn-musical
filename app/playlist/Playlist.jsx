@@ -6,6 +6,7 @@ import Images from "../../constants/Images";
 import {useSelector} from "react-redux";
 import {backgroundPrimary} from "../../constants/Colors";
 import {selectTheme} from "../../store/themeSlice";
+import MusicBar from "../components/MusicBar";
 
 const Playlist = ({route}) => {
     const theme = useSelector(selectTheme)
@@ -18,6 +19,7 @@ const Playlist = ({route}) => {
                 <Banner type={type} index={index}/>
                 <SongList type={type} index={index}/>
             </ScrollView>
+            <MusicBar/>
         </View>
     )
 }
