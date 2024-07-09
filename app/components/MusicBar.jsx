@@ -7,7 +7,15 @@ import SongArtwork from "./SongArtwork";
 import SongInfo from "./SongInfo";
 import {useNavigation} from "@react-navigation/native";
 import {useDispatch, useSelector} from "react-redux";
-import {removePlayingSong, selectArtist, selectImg, selectLink, selectSong, selectType} from "../../store/songSlice";
+import {
+    removePlayingSong,
+    selectArtist,
+    selectId,
+    selectImg,
+    selectLink,
+    selectSong,
+    selectType
+} from "../../store/songSlice";
 import {selectTheme} from "../../store/themeSlice";
 import Icons from "../../constants/Icons";
 import {backgroundPrimary, backgroundSecondary, searchArea} from "../../constants/Colors";
@@ -24,6 +32,7 @@ const MusicBar = () => {
     const artist = useSelector(selectArtist)
     const link = useSelector(selectLink)
     const type = useSelector(selectType)
+    const id = useSelector(selectId)
 
     const dispatch = useDispatch()
 
@@ -65,11 +74,12 @@ const MusicBar = () => {
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => navigation.navigate('Song', {
-                        img: img,
-                        song: song,
-                        artist: artist,
-                        link: link,
-                        type: type
+                        // img: img,
+                        // song: song,
+                        // artist: artist,
+                        // link: link,
+                        // type: type
+                        id: id
                     })}
                 >
                     <SongInfo

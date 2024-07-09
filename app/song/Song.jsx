@@ -6,10 +6,16 @@ import Footer from "./components/Footer"
 import {useSelector} from "react-redux";
 import {blue, orange, purple} from "../../constants/Colors";
 import {selectTheme} from "../../store/themeSlice";
+import {selectArtist, selectImg, selectLink, selectSong, selectType} from "../../store/songSlice";
 
 
 const Song = ({route}) => {
-    const {img, song, artist, link, type} = route.params
+    const {id} = route.params
+    const img = useSelector(selectImg)
+    const song = useSelector(selectSong)
+    const artist = useSelector(selectArtist)
+    const link = useSelector(selectLink)
+    const type = useSelector(selectType)
 
     const theme = useSelector(selectTheme)
 
@@ -38,11 +44,12 @@ const Song = ({route}) => {
                     color={color}
                 />
                 <Content
-                    img={img}
-                    song={song}
-                    artist={artist}
-                    link={link}
+                    // img={img}
+                    // song={song}
+                    // artist={artist}
+                    // link={link}
                     color={color}
+                    id={id}
                 />
                 <Footer
                     color={color}

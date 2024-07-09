@@ -3,7 +3,7 @@ import {View, StyleSheet, FlatList} from 'react-native'
 import {ratioH, ratioW} from "../../../utils/converter";
 import SongItem from "./SongItem";
 
-import SongData from "../../../data/songs.json"
+import SongData from "../../../data/songs.js"
 import Album1 from "../../../data/albums-1.json"
 import Album2 from "../../../data/albums-2.json"
 import {useSelector} from "react-redux";
@@ -38,6 +38,7 @@ const SongList = ({type, index}) => {
                                 artist={item.artist}
                                 link={item.link}
                                 type={type}
+                                id={item.id}
                             />
                         )
                     }
