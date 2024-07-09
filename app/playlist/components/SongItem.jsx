@@ -5,18 +5,21 @@ import {ratioH, ratioW} from "../../../utils/converter"
 import { useNavigation } from '@react-navigation/native'
 import Fonts from "../../../constants/Fonts"
 import Icons from "../../../constants/Icons"
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {textPrimary} from "../../../constants/Colors";
 import {selectTheme} from "../../../store/themeSlice";
+import {addPlayingSong} from "../../../store/songSlice";
 
 const SongItem = ({img, song, artist, link, type}) => {
     const theme = useSelector(selectTheme)
     const navigation = useNavigation()
+    const dispatch = useDispatch()
 
     return (
         <TouchableOpacity
             style={styles().container}
             onPress={() => {
+                dispatch(addPlayingSong({img, song, artist, link, type}))
                 navigation.navigate('Song', {
                         img: img,
                         song: song,
