@@ -18,7 +18,7 @@ const SongInfo = ({height, theme, song, artist, mainFontSize, subFontSize, style
 
 const styles = StyleSheet.create({
     songWrapper: (height) => ({
-        alignItems: 'center',
+
         justifyContent: 'center',
         height: ratioH(height),
     }),

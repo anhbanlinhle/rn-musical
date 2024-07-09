@@ -155,6 +155,7 @@ const styles = StyleSheet.create({
     },
     songInfo: {
         marginTop: ratioH(24),
+        alignItems: 'center',
     },
     songDuration: {
         marginTop: ratioH(24),
