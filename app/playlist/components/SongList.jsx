@@ -38,6 +38,7 @@ const SongList = ({type, index}) => {
                                 artist={item.artist}
                                 link={item.link}
                                 type={type}
+                                id={item.id}
                             />
                         )
                     }

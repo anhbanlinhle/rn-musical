@@ -11,7 +11,7 @@ import {selectTheme} from "../../../store/themeSlice";
 import {addPlayingSong} from "../../../store/songSlice";
 import TrackPlayer, {State, usePlaybackState} from "react-native-track-player";
 
-const SongItem = ({img, song, artist, link, type}) => {
+const SongItem = ({img, song, artist, link, type, id}) => {
     const theme = useSelector(selectTheme)
     const navigation = useNavigation()
     const dispatch = useDispatch()
@@ -21,15 +21,16 @@ const SongItem = ({img, song, artist, link, type}) => {
         <TouchableOpacity
             style={styles().container}
             onPress={() => {
-                dispatch(addPlayingSong({img, song, artist, link, type}))
+                dispatch(addPlayingSong({img, song, artist, link, type, id}))
                 if (playState.state === State.Playing)
                     TrackPlayer.stop()
                 navigation.navigate('Song', {
-                        img: img,
-                        song: song,
-                        artist: artist,
-                        link: link,
-                        type: type
+                        // img: img,
+                        // song: song,
+                        // artist: artist,
+                        // link: link,
+                        // type: type,
+                        id: id
                     })
             }}
         >
