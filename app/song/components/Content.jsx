@@ -18,7 +18,7 @@ import SongArtwork from "../../components/SongArtwork";
 import SongInfo from "../../components/SongInfo";
 import SongDuration from "./SongDuration";
 import SongInteractionButtons from "../../components/SongInteractionButtons";
-import allSongs from "../../../data/songs.json"
+import allSongs from "../../../data/songs.js"
 import {addPlayingSong, selectArtist, selectImg, selectLink, selectSong, selectType} from "../../../store/songSlice";
 
 const Content = ({color, id}) => {
