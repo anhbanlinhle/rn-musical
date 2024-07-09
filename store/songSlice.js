@@ -8,6 +8,7 @@ export const songSlice = createSlice({
         artist: '',
         link: '',
         type: '',
+        id: -1
     },
     reducers: {
         addPlayingSong: (state, action) => {
@@ -16,6 +17,7 @@ export const songSlice = createSlice({
             state.artist = action.payload.artist
             state.link = action.payload.link
             state.type = action.payload.type
+            state.id = action.payload.id
         },
         removePlayingSong: (state) => {
             state.img = ''
@@ -23,6 +25,7 @@ export const songSlice = createSlice({
             state.artist = ''
             state.link = ''
             state.type = ''
+            state.id = -1
         }
     }
 })
@@ -34,5 +37,6 @@ export const selectSong = (state) => state.songData.song
 export const selectArtist = (state) => state.songData.artist
 export const selectLink = (state) => state.songData.link
 export const selectType = (state) => state.songData.type
+export const selectId = (state) => state.songData.id
 
 export default songSlice.reducer
