@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {View, StyleSheet, SafeAreaView} from 'react-native'
 import HomeHeader from "./components/HomeHeader"
 import SearchArea from "./components/SearchArea"
@@ -8,9 +8,12 @@ import {useSelector} from "react-redux"
 import {backgroundPrimary} from "../../constants/Colors"
 import {selectTheme} from "../../store/themeSlice";
 import MusicBar from "../components/MusicBar";
+import {selectArtist, selectId, selectImg, selectLink, selectSong, selectType} from "../../store/songSlice";
 
 const Home = () => {
     const theme = useSelector(selectTheme)
+
+    let playing = useSelector(selectImg) !== ''
 
     return (
         <SafeAreaView style={styles.wrapper(theme)}>
@@ -18,6 +21,7 @@ const Home = () => {
                 <HomeHeader/>
                 <SearchArea/>
                 <FeedArea/>
+                <View style={styles.footer(playing)}/>
             </View>
             <MusicBar/>
         </SafeAreaView>
@@ -36,6 +40,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginTop: ratioH(121),
         gap: ratioW(16)
+    }),
+    footer: (playing) => ({
+        height: playing ? ratioH(128) : 0
     })
 })
 
