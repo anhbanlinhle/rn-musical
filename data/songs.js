@@ -46,7 +46,23 @@ const SongData = [
         link: require('../assets/audio/dont-let-me-fall.mp3'),
       id: 5,
       duration: 71
-    }
+    },
+    {
+        img: "https://upload.wikimedia.org/wikipedia/en/3/35/ImYoursJasonMraz.jpg",
+        song: "I'm Yours",
+        artist: "Jason Mraz",
+        link: require('../assets/audio/im-yours.mp3'),
+        id: 6,
+        duration: 127
+    },
+    {
+        img: "https://upload.wikimedia.org/wikipedia/en/f/f9/Let-her-go-by-passenger.jpg",
+        song: "Let Her Go",
+        artist: "Passenger",
+        link: require('../assets/audio/let-her-go.mp3'),
+        id: 7,
+        duration: 127
+    },
 ]
 
 export default SongData
